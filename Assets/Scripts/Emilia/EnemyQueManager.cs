@@ -13,6 +13,9 @@ public class EnemyQueueManager : MonoBehaviour
     public EnemyWaveData wave;
     public float spawnDelay = 1f;
 
+    [Header("Gameplay")]
+    public bool battleStarted = false;
+
     private List<EnemyUnit> slots = new List<EnemyUnit>(); // 7 slots
     private int spawnIndex = 0;
     private bool spawning = false;
@@ -27,13 +30,20 @@ public class EnemyQueueManager : MonoBehaviour
         StartCoroutine(SpawnRoutine());
     }
 
+    public void StartBattle()
+    {
+        battleStarted = true;
+
+        UpdateAllPositions(); // frontfienden börjar gå mot attack
+    }
+
     IEnumerator SpawnRoutine()
     {
         spawning = true;
 
         while (spawnIndex < wave.enemiesInOrder.Length)
         {
-            if (!spawnBusy)
+            if (!spawnBusy && CanSpawnNext())
             {
                 SpawnEnemy(wave.enemiesInOrder[spawnIndex]);
                 spawnIndex++;
@@ -41,7 +51,7 @@ public class EnemyQueueManager : MonoBehaviour
             }
             else
             {
-                yield return null;
+                yield return null; // vänta tills plats finns
             }
         }
 
@@ -60,19 +70,19 @@ public class EnemyQueueManager : MonoBehaviour
         InsertIntoQueue(unit);
     }
 
-    void InsertIntoQueue(EnemyUnit unit)
+    bool InsertIntoQueue(EnemyUnit unit)
+{
+    for (int i = 0; i < slots.Count; i++)
     {
-        for (int i = 0; i < slots.Count; i++)
+        if (slots[i] == null)
         {
-            if (slots[i] == null)
-            {
-                slots[i] = unit;
-                UpdateAllPositions();
-                spawnBusy = false;
-                return;
-            }
+            slots[i] = unit;
+            spawnBusy = false;
+            return true;
         }
     }
+    return false; // ingen plats
+}
 
     public void KillFrontEnemy()
     {
@@ -85,12 +95,11 @@ public class EnemyQueueManager : MonoBehaviour
     void ShiftForward()
     {
         for (int i = 0; i < slots.Count - 1; i++)
-        {
             slots[i] = slots[i + 1];
-        }
 
         slots[slots.Count - 1] = null;
 
+        // Uppdatera alla targets baserat på nya slots
         UpdateAllPositions();
     }
 
@@ -100,23 +109,41 @@ public class EnemyQueueManager : MonoBehaviour
         {
             if (slots[i] == null) continue;
 
-            Transform target = GetPoint(i);
+            Transform target;
+
+            if (i == 0 && battleStarted)
+            {
+                target = attackPoint; // fronten går till attackPoint först när battle startar
+            }
+            else
+            {
+                int pointIndex;
+                if (battleStarted)
+                {
+                    pointIndex = queuePoints.Length - i; // flytta fram ett steg
+                }
+                else
+                {
+                    pointIndex = queuePoints.Length - 1 - i; // kvar på kö
+                }
+
+                if (pointIndex < 0) pointIndex = 0;
+                target = queuePoints[pointIndex];
+            }
+
             slots[i].MoveTo(target);
         }
     }
 
-    Transform GetPoint(int index)
+    bool CanSpawnNext()
     {
-        // index 0 = front (attackPoint)
-        if (index == 0)
-            return attackPoint;
-
-        // resten = queuePoints, från queuePoints[queuePoints.Length - 1] bakåt
-        int queueIndex = index - 1;
-        if (queueIndex < queuePoints.Length)
-            return queuePoints[queueIndex];
-
-        return queuePoints[queuePoints.Length - 1]; // fallback
+        // Kolla bara köplatser (inte fronten)
+        for (int i = 1; i < queuePoints.Length + 1; i++)
+        {
+            if (slots[i] == null)
+                return true; // finns plats i kön
+        }
+        return false;
     }
 
     public void NotifyUnitReady()
