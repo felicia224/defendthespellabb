@@ -150,11 +150,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1499416784}
   queuePoints:
-  - {fileID: 682465660}
-  - {fileID: 245932241}
-  - {fileID: 216346093}
-  - {fileID: 842557303}
   - {fileID: 1203512310}
+  - {fileID: 842557303}
+  - {fileID: 216346093}
+  - {fileID: 245932241}
+  - {fileID: 682465660}
   attackPoint: {fileID: 538200948}
   wave: {fileID: 11400000, guid: c2d88332a373a22489fdb08c951c1ba5, type: 2}
   spawnDelay: 1
@@ -198,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 216346092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.521, y: 0.709, z: -4.924874}
+  m_LocalPosition: {x: -2.389, y: -0.31599998, z: -4.924874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229,7 +229,7 @@ Transform:
   m_GameObject: {fileID: 245932240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.595, y: 0.709, z: -4.924874}
+  m_LocalPosition: {x: -3.575, y: -0.31599998, z: -4.924874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 538200947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.709, z: -6.024}
+  m_LocalPosition: {x: 0.05, y: -0.31599998, z: -6.024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -501,7 +501,7 @@ Transform:
   m_GameObject: {fileID: 682465659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.671, y: 0.709, z: -4.924874}
+  m_LocalPosition: {x: -4.671, y: -0.316, z: -4.924874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -532,7 +532,7 @@ Transform:
   m_GameObject: {fileID: 842557302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.473, y: 0.709, z: -4.924874}
+  m_LocalPosition: {x: -1.17, y: -0.31599998, z: -4.924874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869340387}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c8a6b258e499ef40860e80264701d55, type: 3}
   m_Name: 
@@ -634,7 +634,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 869340391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 115164511}
+        m_TargetAssemblyTypeName: EnemyQueueManager, Assembly-CSharp
+        m_MethodName: KillFrontEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &869340391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,7 +1234,7 @@ Transform:
   m_GameObject: {fileID: 1203512309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.467, y: 0.709, z: -4.924874}
+  m_LocalPosition: {x: 0.172, y: -0.31599998, z: -4.924874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

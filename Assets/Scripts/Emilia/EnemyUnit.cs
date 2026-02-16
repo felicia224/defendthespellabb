@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;
+
 public class EnemyUnit : MonoBehaviour
 {
     public EnemyQueueManager manager;
