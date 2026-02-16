@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 4316119484127756967}
   - component: {fileID: 1961607374086384977}
   - component: {fileID: 5588258171500943067}
+  - component: {fileID: 7959457808163801701}
   m_Layer: 0
   m_Name: Stormtrooper
   m_TagString: Enemy
@@ -190,7 +191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315079957727215308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d65df8702b9c8074e8f5ae1441ae0d43, type: 3}
   m_Name: 
@@ -234,6 +235,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7959457808163801701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315079957727215308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eeb099aaba67e347afd06bac271d198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &1399098081008200375
 GameObject:
   m_ObjectHideFlags: 0
