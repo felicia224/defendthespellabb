@@ -962,7 +962,6 @@ GameObject:
   - component: {fileID: -2428109569727955629}
   - component: {fileID: 4719571570155578470}
   - component: {fileID: -3179230145001698750}
-  - component: {fileID: 5662337491430104919}
   - component: {fileID: -8799237469207750158}
   m_Layer: 0
   m_Name: DarthVaderNotPink
@@ -1076,23 +1075,10 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &5662337491430104919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3725903880979376755}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65df8702b9c8074e8f5ae1441ae0d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
 --- !u!114 &-8799237469207750158
 MonoBehaviour:
   m_ObjectHideFlags: 0
