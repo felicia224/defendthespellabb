@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave_01
   m_EditorClassIdentifier: 
   enemiesInOrder:
-  - {fileID: 8901026524535756858, guid: bf1bb0d9f424c55478ee9bf0967b1e9e, type: 3}
+  - {fileID: 3725903880979376755, guid: b5b4b2685a5ab234cb451d6b14b72aa3, type: 3}
   - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
   - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
   - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
