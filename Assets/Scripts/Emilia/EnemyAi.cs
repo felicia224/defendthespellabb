@@ -12,6 +12,9 @@ public class EnemyAI : MonoBehaviour
 
     public bool IsAtPosition => !moving;
 
+    public int maxHealth = 100; 
+    private int currentHealth;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -20,11 +23,16 @@ public class EnemyAI : MonoBehaviour
         obstacle.enabled = false;
     }
 
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
     void Update()
     {
         if (!moving) return;
 
-        // Kolla om fienden nått sin destination
+        // Kolla om fienden nï¿½tt sin destination
         if (!agent.pathPending && (!agent.hasPath || agent.remainingDistance <= agent.stoppingDistance))
         {
             StopMoving();
@@ -56,6 +64,16 @@ public class EnemyAI : MonoBehaviour
     public void EnterArena(Transform arenaPos)
     {
         StartMoving(arenaPos.position);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
