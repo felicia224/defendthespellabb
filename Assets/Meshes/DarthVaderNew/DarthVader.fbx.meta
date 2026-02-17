@@ -3,7 +3,27 @@ guid: c47b2260c16b6b54f8add98d4e6e4bba
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 6_0001-Darth-Vader-rig_0.3_16_16
+    second: {fileID: 2100000, guid: da577e784beaf514ab5e8845a4cccafe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 6_0006-Darth-Vader-rig_0.3_16_16
+    second: {fileID: 2100000, guid: 4afa7b2316200fd4e8fba627ff5556d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 6_0007-Darth-Vader-rig_0.4_16_16
+    second: {fileID: 2100000, guid: 4afa7b2316200fd4e8fba627ff5556d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 6_0008-Darth-Vader-rig_0.3_16_16
+    second: {fileID: 2100000, guid: da577e784beaf514ab5e8845a4cccafe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
