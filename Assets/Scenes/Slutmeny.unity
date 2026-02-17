@@ -757,16 +757,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536958189}
-  m_LocalRotation: {x: 0.3528212, y: -0, z: -0, w: 0.93569076}
-  m_LocalPosition: {x: 0, y: 0, z: -170}
+  m_LocalRotation: {x: 0.50584704, y: -0, z: -0, w: 0.8626233}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794641798}
-  m_LocalEulerAnglesHint: {x: 41.32, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.775, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -185, y: -382}
+  m_AnchoredPosition: {x: -288, y: -298}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536958191
@@ -789,9 +789,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A game by\n\n\nValeria Maribel Alvarado Ramirez\nZoey Larsen Mon\xF6 \nIngela
-    Andersson\nFelicia \nEmilia Lundqvist\nLinnea\nTommy\n\nAudio from..\n\n3D enemy
-    models from...\n\n\nThank you for playing our game! :)"
+  m_text: "The Force was not with you :(\n\n\nA GAME BY\n\nEmilia Lundqvist\nFelicia
+    Villarroel\nIngela Andersson\nLinnea Liljenroth Dickman\nTommy Nguyen\nValeria
+    Maribel Alvarado Ramirez\nZoey Larsen Mon\xF6 \n\nAudio from..\n\n3D enemy models
+    from SketchFab\n\n\nThank you for playing our game! :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -825,7 +826,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -856,7 +857,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -288.24255, z: -292.6322, w: -19.024426}
+  m_margin: {x: 0, y: -288.24255, z: -292.6322, w: -47.54316}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
