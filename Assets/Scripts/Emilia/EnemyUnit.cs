@@ -14,6 +14,8 @@ public class EnemyUnit : MonoBehaviour
     private bool ready = false;
     private Transform pendingTarget;
 
+    private EnemyQueueManager enemyQM;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -22,6 +24,7 @@ public class EnemyUnit : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitForNavmesh());
+        enemyQM = FindAnyObjectByType<EnemyQueueManager>();
     }
 
     IEnumerator WaitForNavmesh()
@@ -46,5 +49,13 @@ public class EnemyUnit : MonoBehaviour
         }
 
         agent.SetDestination(target.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Lightsaber")
+        {
+            enemyQM.KillFrontEnemy();
+        }
     }
 }
