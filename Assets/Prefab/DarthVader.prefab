@@ -701,6 +701,9 @@ GameObject:
   - component: {fileID: 285461898168840923}
   - component: {fileID: 2358615046509641058}
   - component: {fileID: 2535484146394226769}
+  - component: {fileID: -4416601587531723959}
+  - component: {fileID: 2368141066082873188}
+  - component: {fileID: -7297611905484162202}
   m_Layer: 0
   m_Name: DarthVader
   m_TagString: Enemy
@@ -809,8 +812,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -835,6 +838,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.027293827, y: 0.009430082, z: 0.0524231}
   m_Center: {x: -0.00033574182, y: -0.00077809097, z: 0.026280131}
+--- !u!114 &-4416601587531723959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746011857362105735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eeb099aaba67e347afd06bac271d198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+--- !u!195 &2368141066082873188
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746011857362105735}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.044294436
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.0078739
+  m_BaseOffset: 0.00393695
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 1
+--- !u!114 &-7297611905484162202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746011857362105735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eeb099aaba67e347afd06bac271d198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &7026652676452566340
 GameObject:
   m_ObjectHideFlags: 0
