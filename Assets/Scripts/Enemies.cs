@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        queueManager.EnemyDied();
+        //queueManager.EnemyDied();
         Destroy(gameObject);
     }
 }
