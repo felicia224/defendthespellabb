@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.28, y: 0.28, z: 0.28}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7997515221977239084}
@@ -71,6 +71,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  distance: 1.5
+  saber: {fileID: 7997515221977331308}
+  duration: 0.2
 --- !u!1 &6330474048064779643
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,5 +272,10 @@ PrefabInstance:
 --- !u!4 &7997515221977239084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 436056, guid: 11530f2b0a0cd2442949827ecbb622f2, type: 3}
+  m_PrefabInstance: {fileID: 7997515221977344372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7997515221977331308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 122648, guid: 11530f2b0a0cd2442949827ecbb622f2, type: 3}
   m_PrefabInstance: {fileID: 7997515221977344372}
   m_PrefabAsset: {fileID: 0}
