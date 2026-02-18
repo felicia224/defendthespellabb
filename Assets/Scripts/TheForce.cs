@@ -13,6 +13,8 @@ public class TheForce : MonoBehaviour
     public float SphereRadius;
     public float heightForce;
 
+    public Transform attackPoint;
+
     public void HandleButtonPress()
     {
         if (hasPressedButton) {
@@ -56,17 +58,21 @@ public class TheForce : MonoBehaviour
         }
 
         NavMeshAgent agent = nearestEnemy.GetComponent<NavMeshAgent>();
+        EnemyUnit unit = nearestEnemy.GetComponent<EnemyUnit>();
         agent.enabled = false;
-        rb.isKinematic = false;
-        yield return new WaitForSeconds(0.5f);
+        unit.enabled = false;
+        //yield return new WaitForSeconds(0.5f);
 
-        nearestEnemy.transform.position += new Vector3(0, 5, 0);
         rb.AddForce(Vector3.up * heightForce);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
-        rb.isKinematic = true;
         agent.enabled = true;
+        unit.enabled = true;
+
+        yield return new WaitUntil(() => agent.isOnNavMesh);
+
+        agent.SetDestination(attackPoint.position);
         //agent.ResetPath();
     }
 

@@ -39,7 +39,7 @@ public class EnemyUnit : MonoBehaviour
 
     public void MoveTo(Transform target)
     {
-        if (!ready)
+        if (!ready || !agent.isOnNavMesh)
         {
             pendingTarget = target;
             return;
