@@ -1092,6 +1092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  maxHealth: 200
+  currentHealth: 0
 --- !u!1 &3935357612554352416
 GameObject:
   m_ObjectHideFlags: 0
