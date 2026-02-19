@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 1961607374086384977}
   - component: {fileID: 5588258171500943067}
   - component: {fileID: 7959457808163801701}
+  - component: {fileID: 2357676896094640329}
   m_Layer: 0
   m_Name: Stormtrooper
   m_TagString: Enemy
@@ -234,6 +235,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 0
+  hitCooldown: 0.2
+--- !u!95 &2357676896094640329
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315079957727215308}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 60a953d2d2ca86b42b3bf9649445310c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 92a5f200528b32146a9e5fd9e19a1d48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1399098081008200375
 GameObject:
   m_ObjectHideFlags: 0
