@@ -2,10 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
-using UnityEngine;
-using UnityEngine.AI;
-using System.Collections;
-
 public class EnemyUnit : MonoBehaviour
 {
     public EnemyQueueManager manager;
@@ -16,10 +12,23 @@ public class EnemyUnit : MonoBehaviour
 
     private EnemyQueueManager enemyQM;
 
+    [Header("Health")]
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    private float lastHitTime;
+    public float hitCooldown = 0.2f;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
+
+    void OnEnable()
+    {
+        currentHealth = maxHealth;
+    }
+
 
     void Start()
     {
@@ -51,12 +60,29 @@ public class EnemyUnit : MonoBehaviour
         agent.SetDestination(target.position);
     }
 
-    //dödar enemies med lasersvärd
-    /*private void OnTriggerEnter(Collider other)
+     public void TakeDamage(int damage)
     {
-        if(other.gameObject.tag == "Lightsaber")
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            enemyQM.KillFrontEnemy();
+            Die();
         }
-    }*/
+    }
+
+    void Die()
+    {
+
+        manager.OnEnemyDied(this);
+  
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Lightsaber")) return;
+
+        if (Time.time - lastHitTime < hitCooldown) return;
+        lastHitTime = Time.time;
+
+        TakeDamage(50);
+    }
 }

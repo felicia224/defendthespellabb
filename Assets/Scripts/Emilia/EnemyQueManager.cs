@@ -50,7 +50,7 @@ public class EnemyQueueManager : MonoBehaviour
         killmeButton.SetActive(true);
 
 
-        UpdateAllPositions(); // frontfienden börjar gå mot attack
+        UpdateAllPositions(); // frontfienden bï¿½rjar gï¿½ mot attack
     }
 
     public void KillMe()
@@ -72,7 +72,7 @@ public class EnemyQueueManager : MonoBehaviour
             }
             else
             {
-                yield return null; // vänta tills plats finns
+                yield return null; // vï¿½nta tills plats finns
             }
         }
 
@@ -107,14 +107,33 @@ public class EnemyQueueManager : MonoBehaviour
 
     public void KillFrontEnemy()
     {
-       //f (battleStarted == false) return; 
+       
         if (slots[0] == null) return;
-
 
 
         Destroy(slots[0].gameObject);
         ShiftForward();
     }
+
+    public void OnEnemyDied(EnemyUnit unit)
+{
+    int index = slots.IndexOf(unit);
+    if (index < 0) return;
+
+    slots[index] = null;
+
+    Destroy(unit.gameObject);
+
+    if (index == 0)
+    {
+        ShiftForward();
+    }
+    else
+    {
+        UpdateAllPositions();
+    }
+}
+
 
     void ShiftForward()
     {
@@ -123,12 +142,14 @@ public class EnemyQueueManager : MonoBehaviour
 
         slots[slots.Count - 1] = null;
 
-        // Uppdatera alla targets baserat på nya slots
+        // Uppdatera alla targets baserat pï¿½ nya slots
         UpdateAllPositions();
     }
 
     void UpdateAllPositions()
     {
+        Debug.Log("UpdateAllPositions()");
+        
         for (int i = 0; i < slots.Count; i++)
         {
             if (slots[i] == null) continue;
@@ -137,7 +158,7 @@ public class EnemyQueueManager : MonoBehaviour
 
             if (i == 0 && battleStarted)
             {
-                target = attackPoint; // fronten går till attackPoint först när battle startar
+                target = attackPoint; // fronten gï¿½r till attackPoint fï¿½rst nï¿½r battle startar
             }
             else
             {
@@ -148,7 +169,7 @@ public class EnemyQueueManager : MonoBehaviour
                 }
                 else
                 {
-                    pointIndex = queuePoints.Length - 1 - i; // kvar på kö
+                    pointIndex = queuePoints.Length - 1 - i; // kvar pï¿½ kï¿½
                 }
 
                 if (pointIndex < 0) pointIndex = 0;
@@ -161,17 +182,18 @@ public class EnemyQueueManager : MonoBehaviour
 
     bool CanSpawnNext()
     {
-        // Kolla bara köplatser (inte fronten)
+        // Kolla bara kï¿½platser (inte fronten)
         for (int i = 1; i < queuePoints.Length + 1; i++)
         {
             if (slots[i] == null)
-                return true; // finns plats i kön
+                return true; // finns plats i kï¿½n
         }
         return false;
     }
 
     public void NotifyUnitReady()
     {
+        Debug.Log("Unit ready -> updating positions");
         UpdateAllPositions();
     }
 }
