@@ -16,38 +16,40 @@ public class TheForce : MonoBehaviour
     public Transform attackPoint;
 
     public void HandleButtonPress()
+{
+    if (hasPressedButton) return;
+    hasPressedButton = true;
+
+    Collider[] hitColliders = Physics.OverlapSphere(transform.position, SphereRadius);
+    if (hitColliders.Length == 0) return;
+
+    GameObject nearestEnemy = null;
+    float closestDistance = Mathf.Infinity;
+
+    foreach (var col in hitColliders)
     {
-        if (hasPressedButton) {
-            return;
+        if (!col.CompareTag("Enemy")) continue;
+
+        float d = Vector3.Distance(transform.position, col.transform.position);
+        if (d < closestDistance)
+        {
+            closestDistance = d;
+            nearestEnemy = col.gameObject;
         }
-        hasPressedButton = true;
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, SphereRadius);
-
-        GameObject nearestEnemy = hitColliders[0].gameObject;
-        float closestDistance = Vector3.Distance(transform.position, hitColliders[0].transform.position);
-
-        foreach (var collider in hitColliders) {
-            if (!collider.CompareTag("Enemy")) {
-                continue;
-            }
-            Debug.Log(collider.transform.name);
-            float currentDistance = Vector3.Distance(transform.position, collider.transform.position);
-
-            if (currentDistance < closestDistance) {
-                nearestEnemy = collider.gameObject;
-                closestDistance = currentDistance;
-                
-
-            }
-
-
-            
-        }
-
-
-        StartCoroutine(forcePush(nearestEnemy));
-
     }
+
+    if (nearestEnemy == null) return;
+
+    EnemyUnit unit = nearestEnemy.GetComponent<EnemyUnit>();
+    if (unit != null)
+    {
+        unit.TakeDamage(50); 
+        if (unit.currentHealth <= 0) return; 
+    }
+
+    StartCoroutine(forcePush(nearestEnemy));
+}
+
 
     private IEnumerator forcePush(GameObject nearestEnemy) {
 
