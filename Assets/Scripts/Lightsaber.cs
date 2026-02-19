@@ -11,14 +11,14 @@ public class Lightsaber : MonoBehaviour
     [SerializeField] private GameObject saber;
     private bool isActive = true;
     private Vector3 onScale = new Vector3(1, 1, 1);
-    private Vector2 offScale = new Vector3(1, -1f, 1);
+    private Vector2 offScale = new Vector3(1, 0f, 1);
     [SerializeField] private float duration = 0.5f;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Cursor.visible = false;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -29,6 +29,23 @@ public class Lightsaber : MonoBehaviour
         Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
         transform.position = worldMousePos;
+        //transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
+        /*if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            float fingerY = touch.position.y;
+            Vector3 pos = transform.position;
+            pos.y = fingerY;
+            transform.position = pos;
+
+            Vector3 worldMousePos = cam.ScreenToWorldPoint(pos);
+
+            transform.position = worldMousePos;
+        }*/
+
+
+
+
 
         var keyboard = Keyboard.current;
 
@@ -36,6 +53,8 @@ public class Lightsaber : MonoBehaviour
         {
             StartScaling();
         }
+
+        
     }
 
     private void StartScaling()

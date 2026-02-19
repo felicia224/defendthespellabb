@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EnemyQueueManager : MonoBehaviour
 {
@@ -22,10 +23,13 @@ public class EnemyQueueManager : MonoBehaviour
     private bool spawning = false;
     private bool spawnBusy = false;
 
+    public int killScore;
+
     [SerializeField] GameObject forceButton;
     [SerializeField] GameObject startButton;
     [SerializeField] GameObject killButton;
     [SerializeField] GameObject killmeButton;
+    [SerializeField] TMP_Text scoreText;
 
     void Start()
     {
@@ -112,6 +116,9 @@ public class EnemyQueueManager : MonoBehaviour
 
 
         Destroy(slots[0].gameObject);
+        killScore++;
+        scoreText.text = "Score: " + killScore;
+
         ShiftForward();
     }
 
