@@ -29,8 +29,8 @@ public class Lightsaber : MonoBehaviour
         //Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
         //transform.position = worldMousePos;
-
-        if (Input.touchCount > 0)
+        transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
+        /*if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             float fingerY = touch.position.y;
@@ -41,7 +41,7 @@ public class Lightsaber : MonoBehaviour
             Vector3 worldMousePos = cam.ScreenToWorldPoint(pos);
 
             transform.position = worldMousePos;
-        }
+        }*/
 
 
 
