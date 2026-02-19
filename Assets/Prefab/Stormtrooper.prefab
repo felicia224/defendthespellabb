@@ -234,6 +234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 0
+  hitCooldown: 0.2
+  damagePopupPrefab: {fileID: 1783729238376541925, guid: 666930d5880d64117919f9d08218991e, type: 3}
 --- !u!1 &1399098081008200375
 GameObject:
   m_ObjectHideFlags: 0
