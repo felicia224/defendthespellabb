@@ -19,6 +19,8 @@ public class EnemyUnit : MonoBehaviour
     private float lastHitTime;
     public float hitCooldown = 0.2f;
 
+    public GameObject damagePopupPrefab;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -63,11 +65,35 @@ public class EnemyUnit : MonoBehaviour
      public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        ShowDamage(damage);
+
         if (currentHealth <= 0)
         {
             Die();
         }
     }
+
+    void ShowDamage(int damage)
+{
+    if (damagePopupPrefab == null) return;
+
+    Vector3 randomOffset = new Vector3(
+        Random.Range(-0.25f, 0.25f),
+        Random.Range(0f, 0.25f),
+        Random.Range(-0.25f, 0.25f)
+    );
+
+    Debug.Log("ShowDamage spawn!");
+
+    Vector3 spawnPos = transform.position + Vector3.up * 2.5f + randomOffset;
+
+    GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
+
+    DamagePopup dp = popup.GetComponent<DamagePopup>();
+    if (dp != null)
+        dp.Setup(damage);
+}
+
 
     void Die()
     {
