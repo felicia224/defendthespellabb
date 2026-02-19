@@ -1,11 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Lightsaber : MonoBehaviour
 {
     //viewport to world eller tvärtom
     [SerializeField] private Camera cam;
     [SerializeField] private float distance;
+    [SerializeField] private GameObject saber;
+    private bool isActive = true;
+    private Vector3 onScale = new Vector3(1, 1, 1);
+    private Vector2 offScale = new Vector3(1, -0.3f, 1);
+    [SerializeField] private float duration = 0.5f;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,9 +25,54 @@ public class Lightsaber : MonoBehaviour
     void Update()
     {
         Vector3 screenMousePos = Mouse.current.position.ReadValue();
-        screenMousePos += Vector3.forward*distance;
+        screenMousePos += Vector3.forward * distance;
         Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
         transform.position = worldMousePos;
     }
+
+    public void FixedUpdate()
+    {
+        var keyboard = Keyboard.current;
+
+        if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
+        {
+            StartScaling();
+        }
+    }
+
+    public void StartScaling()
+    {
+        StartCoroutine(ScaleOverTime(duration));
+    }
+
+    IEnumerator ScaleOverTime(float time)
+    {
+
+        Vector3 startScale;
+        Vector3 targetScale;
+        float elapsed = 0f;
+        if (isActive)
+        {
+            startScale = onScale;
+            targetScale = offScale;
+            isActive= false;
+        }
+        else
+        {
+            startScale = offScale;
+            targetScale = onScale;
+            isActive = true;
+        }
+
+        while (elapsed < time)
+        {
+            saber.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsed / time);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+
+    }
+
 }

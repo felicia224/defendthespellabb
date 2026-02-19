@@ -108,10 +108,10 @@ GameObject:
   - component: {fileID: 8614509194849165493}
   - component: {fileID: 6351399999482955538}
   - component: {fileID: 5758633229250556938}
-  - component: {fileID: 4316119484127756967}
   - component: {fileID: 1961607374086384977}
   - component: {fileID: 5588258171500943067}
   - component: {fileID: 7959457808163801701}
+  - component: {fileID: 1250226876049936936}
   m_Layer: 0
   m_Name: Stormtrooper
   m_TagString: Enemy
@@ -158,8 +158,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -182,21 +182,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.06, y: 4.497223, z: 1}
-  m_Center: {x: -0.008880615, y: 2.245987, z: 0}
---- !u!114 &4316119484127756967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315079957727215308}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65df8702b9c8074e8f5ae1441ae0d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  m_Size: {x: 3.06, y: 4.73332, z: 1}
+  m_Center: {x: -0.008880641, y: 2.127938, z: 0}
 --- !u!195 &1961607374086384977
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -245,6 +232,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8eeb099aaba67e347afd06bac271d198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+--- !u!114 &1250226876049936936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315079957727215308}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65df8702b9c8074e8f5ae1441ae0d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
