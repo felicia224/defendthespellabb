@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TheForce : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class TheForce : MonoBehaviour
     public float barSpeed;
     public float SphereRadius;
     public float heightForce;
+
+    public Transform attackPoint;
 
     public void HandleButtonPress()
     {
@@ -32,19 +36,46 @@ public class TheForce : MonoBehaviour
             if (currentDistance < closestDistance) {
                 nearestEnemy = collider.gameObject;
                 closestDistance = currentDistance;
+                
+
             }
+
+
             
         }
-        
+
+
+        StartCoroutine(forcePush(nearestEnemy));
+
+    }
+
+    private IEnumerator forcePush(GameObject nearestEnemy) {
+
         Rigidbody rb = nearestEnemy.GetComponent<Rigidbody>();
 
-        if (rb == null)
-        {
-            return;
+        if (rb == null) {
+            yield return null;
         }
 
+        NavMeshAgent agent = nearestEnemy.GetComponent<NavMeshAgent>();
+        EnemyUnit unit = nearestEnemy.GetComponent<EnemyUnit>();
+        agent.enabled = false;
+        unit.enabled = false;
+        //yield return new WaitForSeconds(0.5f);
+
         rb.AddForce(Vector3.up * heightForce);
+
+        yield return new WaitForSeconds(3);
+
+        agent.enabled = true;
+        unit.enabled = true;
+
+        yield return new WaitUntil(() => agent.isOnNavMesh);
+
+        agent.SetDestination(attackPoint.position);
+        //agent.ResetPath();
     }
+
 
     public void Update()
     {
