@@ -83,7 +83,9 @@ public class EnemyUnit : MonoBehaviour
         Random.Range(-0.25f, 0.25f)
     );
 
-    Vector3 spawnPos = transform.position + Vector3.up * 2f + randomOffset;
+    Debug.Log("ShowDamage spawn!");
+
+    Vector3 spawnPos = transform.position + Vector3.up * 2.5f + randomOffset;
 
     GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
 
