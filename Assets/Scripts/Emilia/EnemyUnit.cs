@@ -16,11 +16,19 @@ public class EnemyUnit : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
+    private float lastHitTime;
+    public float hitCooldown = 0.2f;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    void OnEnable()
+    {
         currentHealth = maxHealth;
     }
+
 
     void Start()
     {
@@ -70,9 +78,11 @@ public class EnemyUnit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Lightsaber")
-        {
-            enemyQM.KillFrontEnemy();
-        }
+        if (!other.CompareTag("Lightsaber")) return;
+
+        if (Time.time - lastHitTime < hitCooldown) return;
+        lastHitTime = Time.time;
+
+        TakeDamage(50);
     }
 }
