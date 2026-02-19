@@ -29,10 +29,7 @@ public class Lightsaber : MonoBehaviour
         Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
         transform.position = worldMousePos;
-    }
 
-    public void FixedUpdate()
-    {
         var keyboard = Keyboard.current;
 
         if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
@@ -41,12 +38,12 @@ public class Lightsaber : MonoBehaviour
         }
     }
 
-    public void StartScaling()
+    private void StartScaling()
     {
         StartCoroutine(ScaleOverTime(duration));
     }
 
-    IEnumerator ScaleOverTime(float time)
+    private IEnumerator ScaleOverTime(float time)
     {
 
         Vector3 startScale;
