@@ -11,34 +11,24 @@ public class Lightsaber : MonoBehaviour
     [SerializeField] private GameObject saber;
     private bool isActive = true;
     private Vector3 onScale = new Vector3(1, 1, 1);
-    private Vector2 offScale = new Vector3(1, 0f, 1);
+    private Vector2 offScale = new Vector3(1, -1f, 1);
     [SerializeField] private float duration = 0.5f;
-
-    private PlayerInput playerInput;
-
-    private InputAction touchPositionAction;
-    private InputAction touchPressAction;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Cursor.visible = false;
-
-        playerInput = GetComponent<PlayerInput>();
-        touchPressAction = playerInput.actions["TouchPress"];
-        touchPositionAction = playerInput.actions["TouchPosition"];
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*Vector3 screenMousePos = Mouse.current.position.ReadValue();
+        Vector3 screenMousePos = Mouse.current.position.ReadValue();
         screenMousePos += Vector3.forward * distance;
         Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
         transform.position = worldMousePos;
-        */
-
 
         var keyboard = Keyboard.current;
 
@@ -80,24 +70,6 @@ public class Lightsaber : MonoBehaviour
             yield return null;
         }
         
-
-
-    }
-
-    private void onEnable()
-    {
-        touchPressAction.performed += TouchPressed;
-    }
-
-    private void ondisable()
-    {
-        touchPressAction.performed -= TouchPressed;
-    }
-
-    private void TouchPressed(InputAction.CallbackContext context)
-    {
-        float value = context.ReadValue<float>();
-        Debug.Log(value);
 
 
     }
