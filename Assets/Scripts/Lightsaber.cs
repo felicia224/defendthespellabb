@@ -11,14 +11,14 @@ public class Lightsaber : MonoBehaviour
     [SerializeField] private GameObject saber;
     private bool isActive = true;
     private Vector3 onScale = new Vector3(1, 1, 1);
-    private Vector2 offScale = new Vector3(1, -0.3f, 1);
+    private Vector2 offScale = new Vector3(1, -1f, 1);
     [SerializeField] private float duration = 0.5f;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -29,10 +29,7 @@ public class Lightsaber : MonoBehaviour
         Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
         transform.position = worldMousePos;
-    }
 
-    public void FixedUpdate()
-    {
         var keyboard = Keyboard.current;
 
         if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
@@ -41,12 +38,12 @@ public class Lightsaber : MonoBehaviour
         }
     }
 
-    public void StartScaling()
+    private void StartScaling()
     {
         StartCoroutine(ScaleOverTime(duration));
     }
 
-    IEnumerator ScaleOverTime(float time)
+    private IEnumerator ScaleOverTime(float time)
     {
 
         Vector3 startScale;
@@ -64,13 +61,15 @@ public class Lightsaber : MonoBehaviour
             targetScale = onScale;
             isActive = true;
         }
-
+        Debug.Log("happens");
+        saber.GetComponent<CapsuleCollider>().enabled = isActive;
         while (elapsed < time)
         {
             saber.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsed / time);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        
 
 
     }

@@ -51,11 +51,12 @@ public class EnemyUnit : MonoBehaviour
         agent.SetDestination(target.position);
     }
 
-    private void OnTriggerEnter(Collider other)
+    //dödar enemies med lasersvärd
+    /*private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Lightsaber")
         {
             enemyQM.KillFrontEnemy();
         }
-    }
+    }*/
 }

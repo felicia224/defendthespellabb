@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyQueueManager : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class EnemyQueueManager : MonoBehaviour
     private bool spawning = false;
     private bool spawnBusy = false;
 
+    [SerializeField] GameObject forceButton;
+    [SerializeField] GameObject startButton;
+    [SerializeField] GameObject killButton;
+    [SerializeField] GameObject killmeButton;
+
     void Start()
     {
         int totalSlots = queuePoints.Length + 1; // + attackpoint
@@ -28,13 +34,28 @@ public class EnemyQueueManager : MonoBehaviour
             slots.Add(null);
 
         StartCoroutine(SpawnRoutine());
+
+        forceButton.SetActive(false);
+        startButton.SetActive(true);
+        killButton.SetActive(false);
+        killmeButton.SetActive(false);
     }
 
     public void StartBattle()
     {
         battleStarted = true;
+        forceButton.SetActive(true);
+        startButton.SetActive(false) ;
+        killButton.SetActive(true);
+        killmeButton.SetActive(true);
+
 
         UpdateAllPositions(); // frontfienden börjar gå mot attack
+    }
+
+    public void KillMe()
+    {
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator SpawnRoutine()
@@ -86,7 +107,10 @@ public class EnemyQueueManager : MonoBehaviour
 
     public void KillFrontEnemy()
     {
+       //f (battleStarted == false) return; 
         if (slots[0] == null) return;
+
+
 
         Destroy(slots[0].gameObject);
         ShiftForward();
