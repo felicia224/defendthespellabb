@@ -2,10 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
-using UnityEngine;
-using UnityEngine.AI;
-using System.Collections;
-
 public class EnemyUnit : MonoBehaviour
 {
     public EnemyQueueManager manager;
@@ -16,9 +12,14 @@ public class EnemyUnit : MonoBehaviour
 
     private EnemyQueueManager enemyQM;
 
+    [Header("Health")]
+    public int maxHealth = 100;
+    public int currentHealth;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        currentHealth = maxHealth;
     }
 
     void Start()
@@ -49,6 +50,22 @@ public class EnemyUnit : MonoBehaviour
         }
 
         agent.SetDestination(target.position);
+    }
+
+     public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+
+        manager.OnEnemyDied(this);
+  
     }
 
     private void OnTriggerEnter(Collider other)

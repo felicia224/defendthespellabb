@@ -98,14 +98,33 @@ public class EnemyQueueManager : MonoBehaviour
 
     public void KillFrontEnemy()
     {
-       //f (battleStarted == false) return; 
+       
         if (slots[0] == null) return;
-
 
 
         Destroy(slots[0].gameObject);
         ShiftForward();
     }
+
+    public void OnEnemyDied(EnemyUnit unit)
+{
+    int index = slots.IndexOf(unit);
+    if (index < 0) return;
+
+    slots[index] = null;
+
+    Destroy(unit.gameObject);
+
+    if (index == 0)
+    {
+        ShiftForward();
+    }
+    else
+    {
+        UpdateAllPositions();
+    }
+}
+
 
     void ShiftForward()
     {
