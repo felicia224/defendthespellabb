@@ -18,18 +18,18 @@ public class Lightsaber : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Cursor.visible = false;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Vector3 screenMousePos = Mouse.current.position.ReadValue();
-        //screenMousePos += Vector3.forward * distance;
-        //Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
+        Vector3 screenMousePos = Mouse.current.position.ReadValue();
+        screenMousePos += Vector3.forward * distance;
+        Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
-        //transform.position = worldMousePos;
-        transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
+        transform.position = worldMousePos;
+        //transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
         /*if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
