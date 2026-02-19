@@ -11,7 +11,7 @@ public class Lightsaber : MonoBehaviour
     [SerializeField] private GameObject saber;
     private bool isActive = true;
     private Vector3 onScale = new Vector3(1, 1, 1);
-    private Vector2 offScale = new Vector3(1, -0.3f, 1);
+    private Vector2 offScale = new Vector3(1, -1f, 1);
     [SerializeField] private float duration = 0.5f;
     
 
@@ -61,13 +61,15 @@ public class Lightsaber : MonoBehaviour
             targetScale = onScale;
             isActive = true;
         }
-
+        Debug.Log("happens");
+        saber.GetComponent<CapsuleCollider>().enabled = isActive;
         while (elapsed < time)
         {
             saber.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsed / time);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        
 
 
     }
