@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyQueueManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class EnemyQueueManager : MonoBehaviour
     [SerializeField] GameObject forceButton;
     [SerializeField] GameObject startButton;
     [SerializeField] GameObject killButton;
+    [SerializeField] GameObject killmeButton;
 
     void Start()
     {
@@ -36,6 +38,7 @@ public class EnemyQueueManager : MonoBehaviour
         forceButton.SetActive(false);
         startButton.SetActive(true);
         killButton.SetActive(false);
+        killmeButton.SetActive(false);
     }
 
     public void StartBattle()
@@ -44,9 +47,15 @@ public class EnemyQueueManager : MonoBehaviour
         forceButton.SetActive(true);
         startButton.SetActive(false) ;
         killButton.SetActive(true);
+        killmeButton.SetActive(true);
 
 
         UpdateAllPositions(); // frontfienden börjar gå mot attack
+    }
+
+    public void KillMe()
+    {
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator SpawnRoutine()
