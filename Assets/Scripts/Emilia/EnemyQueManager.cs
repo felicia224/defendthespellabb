@@ -21,6 +21,10 @@ public class EnemyQueueManager : MonoBehaviour
     private bool spawning = false;
     private bool spawnBusy = false;
 
+    [SerializeField] GameObject forceButton;
+    [SerializeField] GameObject startButton;
+    [SerializeField] GameObject killButton;
+
     void Start()
     {
         int totalSlots = queuePoints.Length + 1; // + attackpoint
@@ -28,11 +32,19 @@ public class EnemyQueueManager : MonoBehaviour
             slots.Add(null);
 
         StartCoroutine(SpawnRoutine());
+
+        forceButton.SetActive(false);
+        startButton.SetActive(true);
+        killButton.SetActive(false);
     }
 
     public void StartBattle()
     {
         battleStarted = true;
+        forceButton.SetActive(true);
+        startButton.SetActive(false) ;
+        killButton.SetActive(true);
+
 
         UpdateAllPositions(); // frontfienden börjar gå mot attack
     }
@@ -86,7 +98,10 @@ public class EnemyQueueManager : MonoBehaviour
 
     public void KillFrontEnemy()
     {
+       //f (battleStarted == false) return; 
         if (slots[0] == null) return;
+
+
 
         Destroy(slots[0].gameObject);
         ShiftForward();
