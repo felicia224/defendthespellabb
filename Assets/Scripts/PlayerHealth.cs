@@ -1,16 +1,36 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int maxHealth = 3;
+    public int health;
+
+    public Sprite EmptyHeart;
+    public Sprite fullHeart;
+    public Image[] hearts;
+
     void Start()
     {
-        
+        health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        health -= damage;
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+        Debug.Log("Player health: " + health);
+
+        if (health == 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player died!");
+        // Hantera spelarens död här
     }
 }
