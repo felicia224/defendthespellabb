@@ -13,7 +13,8 @@ public class Lightsaber : MonoBehaviour
     private Vector3 onScale = new Vector3(1, 1, 1);
     private Vector2 offScale = new Vector3(1, 0f, 1);
     [SerializeField] private float duration = 0.5f;
-    
+
+    public AudioSource audioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +60,8 @@ public class Lightsaber : MonoBehaviour
 
     private void StartScaling()
     {
+
+        audioSource.Play();
         StartCoroutine(ScaleOverTime(duration));
     }
 
