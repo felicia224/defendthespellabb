@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animation/FallAndDie.fbx.meta
 guid: 02994cae8dc6f3d4785c4cbc6d711531
+========
+guid: 4dcc98d99b78de147aa6b39f546f2570
+>>>>>>>> Tommy:Assets/Animation/DarthVaderIdle.fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
