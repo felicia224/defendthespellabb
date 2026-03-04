@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using TMPro;
 
 public class EnemyUnit : MonoBehaviour
 {
     public EnemyQueueManager manager;
+    public TMP_Text scoreText;
+
+    public TheForce theForceScript;
+
     private NavMeshAgent agent;
 
     private bool ready = false;
