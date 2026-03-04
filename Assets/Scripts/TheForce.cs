@@ -54,6 +54,7 @@ public class TheForce : MonoBehaviour
     var enemyUnit = nearestEnemy.GetComponent<EnemyUnit>();
         if (enemyUnit != null)
             {
+            //här
                 var lightning = Instantiate(lightningPrefab);
                 lightning.Play(lightningOrigin != null ? lightningOrigin : transform, nearestEnemy.transform);
 
