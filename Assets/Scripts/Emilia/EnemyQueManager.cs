@@ -12,8 +12,10 @@ public class EnemyQueueManager : MonoBehaviour
     public Transform attackPoint;
 
     [Header("Wave")]
-    public EnemyWaveData wave;
+    public EnemyWaveData[] waves;
+    private EnemyWaveData wave;
     public float spawnDelay = 1f;
+    private int currentWaveIndex = 0;
 
     [Header("Gameplay")]
     public bool battleStarted = false;
@@ -37,7 +39,7 @@ public class EnemyQueueManager : MonoBehaviour
         for (int i = 0; i < totalSlots; i++)
             slots.Add(null);
 
-        StartCoroutine(SpawnRoutine());
+        StartNextWave();
 
         forceButton.SetActive(false);
         startButton.SetActive(true);
@@ -55,6 +57,22 @@ public class EnemyQueueManager : MonoBehaviour
 
 
         UpdateAllPositions(); // frontfienden b�rjar g� mot attack
+    }
+
+    void StartNextWave()
+    {
+        if (currentWaveIndex >= waves.Length)
+        {
+            Debug.Log("All waves completed!");
+            return;
+        }
+
+        spawnIndex = 0;
+        wave = waves[currentWaveIndex];
+
+        Debug.Log("Starting wave: " + (currentWaveIndex + 1));
+
+        StartCoroutine(SpawnRoutine());
     }
 
     public void KillMe()
@@ -76,11 +94,40 @@ public class EnemyQueueManager : MonoBehaviour
             }
             else
             {
-                yield return null; // v�nta tills plats finns
+                yield return null; 
             }
         }
 
         spawning = false;
+
+        StartCoroutine(CheckWaveFinished());
+    }
+
+    IEnumerator CheckWaveFinished()
+    {
+        while (true)
+        {
+            bool enemiesLeft = false;
+
+            foreach (EnemyUnit unit in slots)
+            {
+                if (unit != null)
+                {
+                    enemiesLeft = true;
+                    break;
+                }
+            }
+
+            if (!enemiesLeft)
+            {
+                currentWaveIndex++;
+                yield return new WaitForSeconds(2f);
+                StartNextWave();
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 
     void SpawnEnemy(GameObject prefab)
