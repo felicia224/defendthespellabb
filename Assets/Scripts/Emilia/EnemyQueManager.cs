@@ -24,6 +24,7 @@ public class EnemyQueueManager : MonoBehaviour
     private int spawnIndex = 0;
     private bool spawning = false;
     private bool spawnBusy = false;
+    private bool gameFinished = false;
 
     public int killScore;
 
@@ -42,7 +43,7 @@ public class EnemyQueueManager : MonoBehaviour
 
         waveText.gameObject.SetActive(false);
 
-        StartNextWave();
+        
 
         forceButton.SetActive(false);
         startButton.SetActive(true);
@@ -58,6 +59,7 @@ public class EnemyQueueManager : MonoBehaviour
         killButton.SetActive(true);
         killmeButton.SetActive(true);
 
+        StartNextWave();
         StartCoroutine(ShowWaveText(currentWaveIndex + 1));
 
         UpdateAllPositions(); // frontfienden b�rjar g� mot attack
@@ -130,9 +132,24 @@ public class EnemyQueueManager : MonoBehaviour
             if (!enemiesLeft)
             {
                 currentWaveIndex++;
-                yield return new WaitForSeconds(2f);
-                StartNextWave();
-                yield break;
+
+                if (currentWaveIndex >= waves.Length)
+                {
+                    // Sista wave klar → Victory
+                    if (!gameFinished)
+                    {
+                        gameFinished = true;
+                        StartCoroutine(LoadVictoryScene());
+                    }
+                    yield break;
+                }
+                else
+                {
+                    // Nästa wave
+                    yield return new WaitForSeconds(2f);
+                    StartNextWave();
+                    yield break;
+                }
             }
 
             yield return null;
@@ -275,5 +292,14 @@ public class EnemyQueueManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         waveText.gameObject.SetActive(false);
+    }
+
+    IEnumerator LoadVictoryScene()
+    {
+        waveText.gameObject.SetActive(true);
+        waveText.text = "victory!";
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene(2);
     }
 }
