@@ -12,8 +12,10 @@ public class EnemyQueueManager : MonoBehaviour
     public Transform attackPoint;
 
     [Header("Wave")]
-    public EnemyWaveData wave;
+    public EnemyWaveData[] waves;
+    private EnemyWaveData wave;
     public float spawnDelay = 1f;
+    private int currentWaveIndex = 0;
 
     [Header("Gameplay")]
     public bool battleStarted = false;
@@ -22,6 +24,7 @@ public class EnemyQueueManager : MonoBehaviour
     private int spawnIndex = 0;
     private bool spawning = false;
     private bool spawnBusy = false;
+    private bool gameFinished = false;
 
     public int killScore;
 
@@ -30,6 +33,9 @@ public class EnemyQueueManager : MonoBehaviour
     [SerializeField] GameObject killButton;
     [SerializeField] GameObject killmeButton;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text waveText;
+
+    [SerializeField] Player player;
 
     void Start()
     {
@@ -37,7 +43,9 @@ public class EnemyQueueManager : MonoBehaviour
         for (int i = 0; i < totalSlots; i++)
             slots.Add(null);
 
-        StartCoroutine(SpawnRoutine());
+        waveText.gameObject.SetActive(false);
+
+        
 
         forceButton.SetActive(false);
         startButton.SetActive(true);
@@ -53,13 +61,37 @@ public class EnemyQueueManager : MonoBehaviour
         killButton.SetActive(true);
         killmeButton.SetActive(true);
 
+        StartNextWave();
+        StartCoroutine(ShowWaveText(currentWaveIndex + 1));
 
         UpdateAllPositions(); // frontfienden b�rjar g� mot attack
     }
 
+    void StartNextWave()
+    {
+        if (currentWaveIndex >= waves.Length)
+        {
+            Debug.Log("All waves completed!");
+            return;
+        }
+
+        spawnIndex = 0;
+        wave = waves[currentWaveIndex];
+
+        Debug.Log("Starting wave: " + (currentWaveIndex + 1));
+
+        if (battleStarted)
+        {
+            StartCoroutine(ShowWaveText(currentWaveIndex + 1));
+        }
+
+        StartCoroutine(SpawnRoutine());
+    }
+
     public void KillMe()
     {
-        SceneManager.LoadScene(2);
+        player.KillPlayer();
+        //SceneManager.LoadScene(2);
     }
 
     IEnumerator SpawnRoutine()
@@ -76,11 +108,55 @@ public class EnemyQueueManager : MonoBehaviour
             }
             else
             {
-                yield return null; // v�nta tills plats finns
+                yield return null; 
             }
         }
 
         spawning = false;
+
+        StartCoroutine(CheckWaveFinished());
+    }
+
+    IEnumerator CheckWaveFinished()
+    {
+        while (true)
+        {
+            bool enemiesLeft = false;
+
+            foreach (EnemyUnit unit in slots)
+            {
+                if (unit != null)
+                {
+                    enemiesLeft = true;
+                    break;
+                }
+            }
+
+            if (!enemiesLeft)
+            {
+                currentWaveIndex++;
+
+                if (currentWaveIndex >= waves.Length)
+                {
+                    // Sista wave klar → Victory
+                    if (!gameFinished)
+                    {
+                        gameFinished = true;
+                        StartCoroutine(LoadVictoryScene());
+                    }
+                    yield break;
+                }
+                else
+                {
+                    // Nästa wave
+                    yield return new WaitForSeconds(2f);
+                    StartNextWave();
+                    yield break;
+                }
+            }
+
+            yield return null;
+        }
     }
 
     void SpawnEnemy(GameObject prefab)
@@ -202,5 +278,31 @@ public class EnemyQueueManager : MonoBehaviour
     {
         Debug.Log("Unit ready -> updating positions");
         UpdateAllPositions();
+    }
+
+    IEnumerator ShowWaveText(int waveNumber)
+    {
+        waveText.gameObject.SetActive(true);
+        
+        if(currentWaveIndex == waves.Length - 1)
+        {
+            waveText.text = "Final Wave!";
+        }else
+        {
+            waveText.text = "Wave " + waveNumber + " incoming!";
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        waveText.gameObject.SetActive(false);
+    }
+
+    IEnumerator LoadVictoryScene()
+    {
+        waveText.gameObject.SetActive(true);
+        waveText.text = "victory!";
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene(3);
     }
 }

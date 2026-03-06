@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6027bd6a008b4d4784878c263e40dc1, type: 3}
-  m_Name: Wave_01
+  m_Name: Wave_02
   m_EditorClassIdentifier: 
   enemiesInOrder:
+  - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
+  - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
   - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
   - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
   - {fileID: 1315079957727215308, guid: 96564a8917fcb104da4562d7c4432168, type: 3}
