@@ -32,12 +32,15 @@ public class EnemyQueueManager : MonoBehaviour
     [SerializeField] GameObject killButton;
     [SerializeField] GameObject killmeButton;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text waveText;
 
     void Start()
     {
         int totalSlots = queuePoints.Length + 1; // + attackpoint
         for (int i = 0; i < totalSlots; i++)
             slots.Add(null);
+
+        waveText.gameObject.SetActive(false);
 
         StartNextWave();
 
@@ -55,6 +58,7 @@ public class EnemyQueueManager : MonoBehaviour
         killButton.SetActive(true);
         killmeButton.SetActive(true);
 
+        StartCoroutine(ShowWaveText(currentWaveIndex + 1));
 
         UpdateAllPositions(); // frontfienden b�rjar g� mot attack
     }
@@ -71,6 +75,11 @@ public class EnemyQueueManager : MonoBehaviour
         wave = waves[currentWaveIndex];
 
         Debug.Log("Starting wave: " + (currentWaveIndex + 1));
+
+        if (battleStarted)
+        {
+            StartCoroutine(ShowWaveText(currentWaveIndex + 1));
+        }
 
         StartCoroutine(SpawnRoutine());
     }
@@ -249,5 +258,22 @@ public class EnemyQueueManager : MonoBehaviour
     {
         Debug.Log("Unit ready -> updating positions");
         UpdateAllPositions();
+    }
+
+    IEnumerator ShowWaveText(int waveNumber)
+    {
+        waveText.gameObject.SetActive(true);
+        
+        if(currentWaveIndex == waves.Length - 1)
+        {
+            waveText.text = "Final Wave!";
+        }else
+        {
+            waveText.text = "Wave " + waveNumber + " incoming!";
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        waveText.gameObject.SetActive(false);
     }
 }
