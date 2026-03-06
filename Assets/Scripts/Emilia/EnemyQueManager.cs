@@ -303,6 +303,6 @@ public class EnemyQueueManager : MonoBehaviour
         waveText.text = "victory!";
         yield return new WaitForSeconds(3f);
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }
