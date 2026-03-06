@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 
 public class EnemyUnit : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class EnemyUnit : MonoBehaviour
     private Transform pendingTarget;
 
     private EnemyQueueManager enemyQM;
+
+    [SerializeField] private Lightsaber enemyLightsaber;
 
     [Header("Health")]
     public int maxHealth = 100;
@@ -115,5 +118,10 @@ public class EnemyUnit : MonoBehaviour
         lastHitTime = Time.time;
 
         TakeDamage(50);
+    }
+
+    private void AttackPlayer()
+    {
+        
     }
 }

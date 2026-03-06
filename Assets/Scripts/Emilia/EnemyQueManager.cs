@@ -35,6 +35,8 @@ public class EnemyQueueManager : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text waveText;
 
+    [SerializeField] Player player;
+
     void Start()
     {
         int totalSlots = queuePoints.Length + 1; // + attackpoint
@@ -88,7 +90,8 @@ public class EnemyQueueManager : MonoBehaviour
 
     public void KillMe()
     {
-        SceneManager.LoadScene(2);
+        player.KillPlayer();
+        //SceneManager.LoadScene(2);
     }
 
     IEnumerator SpawnRoutine()
