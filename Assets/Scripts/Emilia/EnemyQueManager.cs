@@ -299,6 +299,10 @@ public class EnemyQueueManager : MonoBehaviour
 
     IEnumerator LoadVictoryScene()
     {
+
+        // Spara score
+        ScoreManager.instance?.SaveScore();
+
         waveText.gameObject.SetActive(true);
         waveText.text = "victory!";
         yield return new WaitForSeconds(3f);
