@@ -106,6 +106,10 @@ public class EnemyUnit : MonoBehaviour
     void Die()
     {
 
+        // Summera score
+        if (ScoreManager.instance != null)
+            ScoreManager.instance.AddScore(30);
+
         manager.OnEnemyDied(this);
   
     }
