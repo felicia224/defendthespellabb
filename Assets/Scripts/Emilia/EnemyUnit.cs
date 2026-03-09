@@ -28,6 +28,7 @@ public class EnemyUnit : MonoBehaviour
     public float hitCooldown = 0.2f;
 
     public GameObject damagePopupPrefab;
+    private Animator animator;
 
     void Awake()
     {
@@ -44,6 +45,9 @@ public class EnemyUnit : MonoBehaviour
     {
         StartCoroutine(WaitForNavmesh());
         enemyQM = FindAnyObjectByType<EnemyQueueManager>();
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+
     }
 
     IEnumerator WaitForNavmesh()
@@ -122,6 +126,18 @@ public class EnemyUnit : MonoBehaviour
         lastHitTime = Time.time;
 
         TakeDamage(50);
+    }
+
+    void Update()
+    {
+        if (agent != null && animator != null)
+        {
+            // NavMeshAgent.velocity.magnitude är hastigheten
+            float speed = agent.velocity.magnitude;
+
+            // Sätt Speed i Animator
+            animator.SetFloat("Speed", speed);
+        }
     }
 
     private void AttackPlayer()
