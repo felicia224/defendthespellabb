@@ -1,16 +1,24 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 
 public class EnemyUnit : MonoBehaviour
 {
     public EnemyQueueManager manager;
+    public TMP_Text scoreText;
+
+    public TheForce theForceScript;
+
     private NavMeshAgent agent;
 
     private bool ready = false;
     private Transform pendingTarget;
 
     private EnemyQueueManager enemyQM;
+
+    [SerializeField] private Lightsaber enemyLightsaber;
 
     [Header("Health")]
     public int maxHealth = 100;
@@ -98,6 +106,10 @@ public class EnemyUnit : MonoBehaviour
     void Die()
     {
 
+        // Summera score
+        if (ScoreManager.instance != null)
+            ScoreManager.instance.AddScore(30);
+
         manager.OnEnemyDied(this);
   
     }
@@ -110,5 +122,10 @@ public class EnemyUnit : MonoBehaviour
         lastHitTime = Time.time;
 
         TakeDamage(50);
+    }
+
+    private void AttackPlayer()
+    {
+        
     }
 }

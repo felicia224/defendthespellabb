@@ -13,6 +13,7 @@ public class Lightsaber : MonoBehaviour
     private Vector3 onScale = new Vector3(1, 1, 1);
     private Vector2 offScale = new Vector3(1, 0f, 1);
     [SerializeField] private float duration = 0.5f;
+    private bool isEnemyLightsaber = false;
 
     public AudioSource audioSource;
 
@@ -20,42 +21,50 @@ public class Lightsaber : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+
+        if (this.CompareTag("EnemyLightsaber"))
+        {
+            isEnemyLightsaber = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 screenMousePos = Mouse.current.position.ReadValue();
-        screenMousePos += Vector3.forward * distance;
-        Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
-
-        transform.position = worldMousePos;
-        //transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
-        /*if (Input.touchCount > 0)
+        if (!isEnemyLightsaber)
         {
-            Touch touch = Input.GetTouch(0);
-            float fingerY = touch.position.y;
-            Vector3 pos = transform.position;
-            pos.y = fingerY;
-            transform.position = pos;
-
-            Vector3 worldMousePos = cam.ScreenToWorldPoint(pos);
+            Vector3 screenMousePos = Mouse.current.position.ReadValue();
+            screenMousePos += Vector3.forward * distance;
+            Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
             transform.position = worldMousePos;
-        }*/
+
+            //transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
+            /*if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                float fingerY = touch.position.y;
+                Vector3 pos = transform.position;
+                pos.y = fingerY;
+                transform.position = pos;
+
+                Vector3 worldMousePos = cam.ScreenToWorldPoint(pos);
+
+                transform.position = worldMousePos;
+            }*/
 
 
 
 
 
-        var keyboard = Keyboard.current;
+            var keyboard = Keyboard.current;
 
-        if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
-        {
-            StartScaling();
+            if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
+            {
+                StartScaling();
+            }
+
         }
-
-        
     }
 
     private void StartScaling()
@@ -96,4 +105,16 @@ public class Lightsaber : MonoBehaviour
 
     }
 
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (isEnemyLightsaber)
+        {
+            Debug.Log("Triggered");
+            if (other.gameObject.CompareTag("MainCamera"))
+            {
+                Debug.Log("Triggered camera!");
+            }
+        }
+        
+    }*/
 }
