@@ -15,7 +15,11 @@ public class TheForce : MonoBehaviour
 
     public Transform attackPoint;
 
+    public ForceLightningVFX lightningPrefab;
+    public Transform lightningOrigin; 
+
     public void HandleButtonPress()
+
 {
     if (hasPressedButton) return;
     hasPressedButton = true;
@@ -46,6 +50,16 @@ public class TheForce : MonoBehaviour
         unit.TakeDamage(50); 
         if (unit.currentHealth <= 0) return; 
     }
+
+    var enemyUnit = nearestEnemy.GetComponent<EnemyUnit>();
+        if (enemyUnit != null)
+            {
+            //här
+                var lightning = Instantiate(lightningPrefab);
+                lightning.Play(lightningOrigin != null ? lightningOrigin : transform, nearestEnemy.transform);
+
+                enemyUnit.TakeDamage(30);
+            }
 
     StartCoroutine(forcePush(nearestEnemy));
 }

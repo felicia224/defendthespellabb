@@ -963,6 +963,7 @@ GameObject:
   - component: {fileID: 4719571570155578470}
   - component: {fileID: -3179230145001698750}
   - component: {fileID: -8799237469207750158}
+  - component: {fileID: 8040342962543995997}
   m_Layer: 0
   m_Name: DarthVaderNotPink
   m_TagString: Enemy
@@ -1094,6 +1095,30 @@ MonoBehaviour:
   manager: {fileID: 0}
   maxHealth: 200
   currentHealth: 0
+  hitCooldown: 0.2
+  damagePopupPrefab: {fileID: 0}
+--- !u!95 &8040342962543995997
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725903880979376755}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c47b2260c16b6b54f8add98d4e6e4bba, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0225afc64b10379478e7634f0431a9b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3935357612554352416
 GameObject:
   m_ObjectHideFlags: 0

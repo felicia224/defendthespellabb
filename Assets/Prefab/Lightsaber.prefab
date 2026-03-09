@@ -50,6 +50,7 @@ MonoBehaviour:
   distance: 2.5
   saber: {fileID: 7997515221977331308}
   duration: 0.2
+  audioSource: {fileID: 0}
 --- !u!1 &6330474048064779643
 GameObject:
   m_ObjectHideFlags: 0
