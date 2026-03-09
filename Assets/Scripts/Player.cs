@@ -1,150 +1,44 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-
-/*
-    This script provides jumping and movement in Unity 3D - Gatsby
-*/
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    // Camera Rotation
-    public float mouseSensitivity = 2f;
-    private float verticalRotation = 0f;
-    private Transform cameraTransform;
+    [SerializeField] private int maxHealth = 3;
+    private int health;
+    
 
-    // Ground Movement
-    private Rigidbody rb;
-    public float MoveSpeed = 5f;
-    private float moveHorizontal;
-    private float moveForward;
-
-    // Jumping
-    public float jumpForce = 10f;
-    public float fallMultiplier = 2.5f; // Multiplies gravity when falling down
-    public float ascendMultiplier = 2f; // Multiplies gravity for ascending to peak of jump
-    private bool isGrounded = true;
-    public LayerMask groundLayer;
-    private float groundCheckTimer = 0f;
-    private float groundCheckDelay = 0.3f;
-    private float playerHeight;
-    private float raycastDistance;
-
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-        cameraTransform = Camera.main.transform;
-
-        // Set the raycast to be slightly beneath the player's feet
-        playerHeight = GetComponent<CapsuleCollider>().height * transform.localScale.y;
-        raycastDistance = (playerHeight / 2) + 0.2f;
-
-        // Hides the mouse
-      //  Cursor.lockState = CursorLockMode.Locked;
-       // Cursor.visible = false;
+        health = maxHealth; Debug.Log(health);
     }
 
+    // Update is called once per frame
     void Update()
     {
-        // L�s in r�relse med nya Input System
-        var keyboard = Keyboard.current;
-        moveHorizontal = 0f;
-        moveForward = 0f;
+        
+    }
 
-        if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed)
-            moveHorizontal = -1f;
-        else if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed)
-            moveHorizontal = 1f;
-
-        if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed)
-            moveForward = 1f;
-        else if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed)
-            moveForward = -1f;
-
-        // RotateCamera();
-
-        // Hoppa med nya Input System
-        if (keyboard.spaceKey.wasPressedThisFrame && isGrounded)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("EnemyLightsaber"))
         {
-            Jump();
-        }
-
-        // Checking when we're on the ground and keeping track of our ground check delay
-        if (!isGrounded && groundCheckTimer <= 0f)
-        {
-            Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
-            isGrounded = Physics.Raycast(rayOrigin, Vector3.down, raycastDistance, groundLayer);
-        }
-        else
-        {
-            groundCheckTimer -= Time.deltaTime;
+            TakeDamage();
         }
     }
 
-    void FixedUpdate()
+    private void TakeDamage()
     {
-        MovePlayer();
-        ApplyJumpPhysics();
-    }
-
-    void MovePlayer()
-    {
-        Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
-        Vector3 targetVelocity = movement * MoveSpeed;
-
-        // Apply movement to the Rigidbody
-        Vector3 velocity = rb.linearVelocity;
-        velocity.x = targetVelocity.x;
-        velocity.z = targetVelocity.z;
-        rb.linearVelocity = velocity;
-
-        // If we aren't moving and are on the ground, stop velocity so we don't slide
-        if (isGrounded && moveHorizontal == 0 && moveForward == 0)
+        health--; Debug.Log(health);
+        if(health <= 0)
         {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            KillPlayer();
         }
     }
 
-/*
-    void RotateCamera()
+    public void KillPlayer()
     {
-        var mouse = Mouse.current;
-        float horizontalRotation = 0f;
-        float verticalRotationInput = 0f;
-
-        if (mouse != null)
-        {
-            horizontalRotation = mouse.delta.x.ReadValue() * mouseSensitivity;
-            verticalRotationInput = mouse.delta.y.ReadValue() * mouseSensitivity;
-        }
-
-        transform.Rotate(0, horizontalRotation, 0);
-
-        verticalRotation -= verticalRotationInput;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
-
-        cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
-    }
-*/
-
-    void Jump()
-    {
-        isGrounded = false;
-        groundCheckTimer = groundCheckDelay;
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z); // Initial burst for the jump
-    }
-
-    void ApplyJumpPhysics()
-    {
-        if (rb.linearVelocity.y < 0)
-        {
-            // Falling: Apply fall multiplier to make descent faster
-            rb.linearVelocity += Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
-        } // Rising
-        else if (rb.linearVelocity.y > 0)
-        {
-            // Rising: Change multiplier to make player reach peak of jump faster
-            rb.linearVelocity += Vector3.up * Physics.gravity.y * ascendMultiplier * Time.fixedDeltaTime;
-        }
+        Cursor.visible = true;
+        SceneManager.LoadScene(2);
     }
 }
