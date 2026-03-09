@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Startmeny.unity
     guid: 245ec0332f67b3d4988e2a8d214f610e
   - enabled: 1
-    path: "Assets/Scenes/K\xF6OchSpawn.unity"
+    path: "Assets/Scenes/Ko\u0308OchSpawn.unity"
     guid: 0e4a696936d149f4dabf372fe13055f6
   - enabled: 1
-    path: "Assets/Scenes/SlutmenyF\xD6RLUST.unity"
+    path: "Assets/Scenes/SlutmenyFO\u0308RLUST.unity"
     guid: 02cf45714bcdae64f875b1c6d48b29c2
   - enabled: 1
     path: Assets/Scenes/SlutmenyVINST.unity
