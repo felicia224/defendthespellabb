@@ -28,7 +28,7 @@ public class EnemyUnit : MonoBehaviour
     public float hitCooldown = 0.2f;
 
     public GameObject damagePopupPrefab;
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
     private float timeBeforeAttack;
     [SerializeField] private const float interval = 3.0f;
@@ -50,7 +50,6 @@ public class EnemyUnit : MonoBehaviour
         StartCoroutine(WaitForNavmesh());
         //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
 
     }
 
@@ -161,6 +160,8 @@ public class EnemyUnit : MonoBehaviour
     private void AttackPlayer()
     {
         Debug.Log("Attacking");
+        //här ska attackanimation läggas in nu
+        animator.SetTrigger("AttackSword");
     }
 
     private void WaitForAttack()
