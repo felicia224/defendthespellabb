@@ -114,7 +114,7 @@ MonoBehaviour:
   SphereRadius: 100
   heightForce: 300
   attackPoint: {fileID: 0}
-  lightningPrefab: {fileID: 0}
+  lightningPrefab: {fileID: 3850157192708432312, guid: 1341c3165c690496db68c0db6af15832, type: 3}
   lightningOrigin: {fileID: 0}
 --- !u!136 &8734721477532310222
 CapsuleCollider:
@@ -178,3 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f15a1ab6ebc0442b13eb967b8b5efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3

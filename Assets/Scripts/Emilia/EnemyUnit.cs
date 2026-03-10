@@ -37,10 +37,6 @@ public class EnemyUnit : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    void OnEnable()
-    {
         currentHealth = maxHealth;
     }
 
@@ -90,25 +86,25 @@ public class EnemyUnit : MonoBehaviour
     }
 
     void ShowDamage(int damage)
-{
-    if (damagePopupPrefab == null) return;
+    {
+        if (damagePopupPrefab == null) return;
 
-    Vector3 randomOffset = new Vector3(
-        Random.Range(-0.25f, 0.25f),
-        Random.Range(0f, 0.25f),
-        Random.Range(-0.25f, 0.25f)
-    );
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-0.25f, 0.25f),
+            Random.Range(0f, 0.25f),
+            Random.Range(-0.25f, 0.25f)
+        );
 
-    Debug.Log("ShowDamage spawn!");
+        Debug.Log("ShowDamage spawn!");
 
-    Vector3 spawnPos = transform.position + Vector3.up * 2.5f + randomOffset;
+        Vector3 spawnPos = transform.position + Vector3.up * 0.5f + randomOffset;
 
-    GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
+        GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
 
-    DamagePopup dp = popup.GetComponent<DamagePopup>();
-    if (dp != null)
-        dp.Setup(damage);
-}
+        DamagePopup dp = popup.GetComponent<DamagePopup>();
+        if (dp != null)
+            dp.Setup(damage);
+    }
 
 
     void Die()
