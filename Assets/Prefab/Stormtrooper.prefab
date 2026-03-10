@@ -1939,6 +1939,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: T-Pose
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4c139391f6a7840bb2c98f3fb99cf8, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4c139391f6a7840bb2c98f3fb99cf8, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4c139391f6a7840bb2c98f3fb99cf8, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b4c139391f6a7840bb2c98f3fb99cf8, type: 2}
     - target: {fileID: 5866666021909216657, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1949,13 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Armature'\n\tTransform 'Right arm'\n\tTransform
-        'Neck'\n\tTransform 'Right leg'\n\tTransform 'Left arm'\n\tTransform 'Left
-        elbow'\n\tTransform 'Right shoulder'\n\tTransform 'Right knee'\n\tTransform
-        'Right elbow'\n\tTransform 'Chest'\n\tand more ...\n\tFrom animation clip
-        'SwordWalk'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5ae9dfa1f69399041bd476be36da3723, type: 3}
       propertyPath: m_ApplyRootMotion
