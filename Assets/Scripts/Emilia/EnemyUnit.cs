@@ -125,6 +125,7 @@ public class EnemyUnit : MonoBehaviour
             if (Time.time - lastHitTime < hitCooldown) return;
             lastHitTime = Time.time;
 
+            animator.SetTrigger("Hit"); // NYYYYYYYYYY
             TakeDamage(50);
         }
 
