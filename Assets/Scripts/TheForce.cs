@@ -19,50 +19,47 @@ public class TheForce : MonoBehaviour
     public Transform lightningOrigin; 
 
     public void HandleButtonPress()
-
-{
-    if (hasPressedButton) return;
-    hasPressedButton = true;
-
-    Collider[] hitColliders = Physics.OverlapSphere(transform.position, SphereRadius);
-    if (hitColliders.Length == 0) return;
-
-    GameObject nearestEnemy = null;
-    float closestDistance = Mathf.Infinity;
-
-    foreach (var col in hitColliders)
     {
-        if (!col.CompareTag("Enemy")) continue;
+        if (hasPressedButton) return;
+        hasPressedButton = true;
 
-        float d = Vector3.Distance(transform.position, col.transform.position);
-        if (d < closestDistance)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, SphereRadius);
+        if (hitColliders.Length == 0) return;
+
+        GameObject nearestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var col in hitColliders)
         {
-            closestDistance = d;
-            nearestEnemy = col.gameObject;
+            if (!col.CompareTag("Enemy")) continue;
+
+            float d = Vector3.Distance(transform.position, col.transform.position);
+            if (d < closestDistance)
+            {
+                closestDistance = d;
+                nearestEnemy = col.gameObject;
+            }
+        }
+
+        if (nearestEnemy == null) return;
+
+        EnemyUnit unit = nearestEnemy.GetComponent<EnemyUnit>();
+        if (unit != null)
+        {
+            Debug.Log($"Health {unit.currentHealth}");
+            unit.TakeDamage(50);
+            Debug.Log("taking 50 damage");
+            Debug.Log($"Health {unit.currentHealth}");
+            if (unit.currentHealth <= 0) return;
+
+
+            var lightning = Instantiate(lightningPrefab);
+            lightning.Play(lightningOrigin != null ? lightningOrigin : transform, nearestEnemy.transform);
+
+
+            StartCoroutine(forcePush(nearestEnemy));
         }
     }
-
-    if (nearestEnemy == null) return;
-
-    EnemyUnit unit = nearestEnemy.GetComponent<EnemyUnit>();
-    if (unit != null)
-    {
-        unit.TakeDamage(50); 
-        if (unit.currentHealth <= 0) return; 
-    }
-
-    var enemyUnit = nearestEnemy.GetComponent<EnemyUnit>();
-        if (enemyUnit != null)
-            {
-            //här
-                var lightning = Instantiate(lightningPrefab);
-                lightning.Play(lightningOrigin != null ? lightningOrigin : transform, nearestEnemy.transform);
-
-                enemyUnit.TakeDamage(30);
-            }
-
-    StartCoroutine(forcePush(nearestEnemy));
-}
 
 
     private IEnumerator forcePush(GameObject nearestEnemy) {
@@ -81,14 +78,12 @@ public class TheForce : MonoBehaviour
 
         rb.AddForce(Vector3.up * heightForce);
 
-        yield return new WaitForSeconds(3);
-
+        yield return new WaitForSeconds(2f);
         agent.enabled = true;
         unit.enabled = true;
+        yield return new WaitUntil(() => agent == null || agent.isOnNavMesh);
 
-        yield return new WaitUntil(() => agent.isOnNavMesh);
-
-        agent.SetDestination(attackPoint.position);
+        if(agent) agent.SetDestination(attackPoint.position);
         //agent.ResetPath();
     }
 

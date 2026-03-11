@@ -32,7 +32,7 @@ public class DataPad : MonoBehaviour
         if (scoreText != null) {
             if (ScoreManager.instance != null)
             {
-                scoreText.text = "Score: " + ScoreManager.instance.GetScore();
+                scoreText.text = ScoreManager.instance.GetScore().ToString();
             }
         }
     }
