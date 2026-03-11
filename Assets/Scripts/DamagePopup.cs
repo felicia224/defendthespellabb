@@ -6,23 +6,27 @@ public class DamagePopup : MonoBehaviour
     public float floatSpeed = 1f;
     public float duration = 1f;
 
-    private TMP_Text text;
-    private Color color;
+    private TMP_Text damageText;
+    private Color textColor;
     private float timer;
 
     void Awake()
     {
-        text = GetComponentInChildren<TMP_Text>();
-        if (text != null)
-            color = text.color;
+        damageText = GetComponentInChildren<TMP_Text>();
+        if (damageText != null)
+        {
+            textColor = damageText.color;
+        }
 
         timer = duration;
     }
 
     public void Setup(int damage)
     {
-        if (text != null)
-            text.text = "-" + damage;
+        if (damageText != null)
+        {
+            damageText.text = "-" + damage;
+        }
     }
 
     void Update()
@@ -31,19 +35,23 @@ public class DamagePopup : MonoBehaviour
 
         timer -= Time.deltaTime;
 
-        if (text != null)
+        if (damageText != null)
         {
-            color.a = Mathf.Clamp01(timer / duration);
-            text.color = color;
+            textColor.a = Mathf.Clamp01(timer / duration);
+            damageText.color = textColor;
         }
 
         if (timer <= 0f)
+        {
             Destroy(gameObject);
+        }
     }
 
     void LateUpdate()
     {
         if (Camera.main != null)
+        {
             transform.forward = Camera.main.transform.forward;
+        }
     }
 }
