@@ -107,15 +107,15 @@ public class EnemyUnit : MonoBehaviour
             Random.Range(-0.25f, 0.25f)
         );
 
-        Debug.Log("ShowDamage spawn!");
-
-        Vector3 spawnPos = transform.position + Vector3.up * 0.5f + randomOffset;
+        Vector3 spawnPos = transform.position + Vector3.up * 2f + randomOffset;
 
         GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
 
         DamagePopup dp = popup.GetComponent<DamagePopup>();
         if (dp != null)
+        {
             dp.Setup(damage);
+        }
     }
 
 
