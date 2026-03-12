@@ -54,10 +54,14 @@ public class EnemyUnit : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         //Z
-        if (playerHealth == null)
+       
         {
-            playerHealth = FindObjectOfType<PlayerHealth>();
+            if (playerHealth == null)
+                playerHealth = FindObjectOfType<PlayerHealth>();
+
+            Debug.Log("PlayerHealth assigned: " + (playerHealth != null));
         }
+
         //Z
     }
 
