@@ -5,7 +5,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 3;
     private int health;
-    
+    public HealthHeartBar healthHeartBar;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -33,6 +34,11 @@ public class Player : MonoBehaviour
         if(health <= 0)
         {
             KillPlayer();
+        }
+
+        if (healthHeartBar != null)
+        {
+            healthHeartBar.health = health;  // update heart bar health
         }
     }
 

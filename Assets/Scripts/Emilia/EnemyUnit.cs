@@ -35,7 +35,7 @@ public class EnemyUnit : MonoBehaviour
     private bool readyToAttack;
 
     //Zoey la till:
-    public PlayerHealth playerHealth;
+    public HealthHeartBar playerHealthBar;
     public float attackRange = 2.0f;
     public int attackDamage = 1; // Use 1 damage to match player health system
 
@@ -56,10 +56,10 @@ public class EnemyUnit : MonoBehaviour
         //Z
        
         {
-            if (playerHealth == null)
-                playerHealth = FindObjectOfType<PlayerHealth>();
+            if (playerHealthBar == null)
+                playerHealthBar = FindAnyObjectByType<HealthHeartBar>();
 
-            Debug.Log("PlayerHealth assigned: " + (playerHealth != null));
+            Debug.Log("playerHealthBar  assigned: " + (playerHealthBar != null));
         }
 
         //Z
@@ -170,9 +170,9 @@ public class EnemyUnit : MonoBehaviour
         }
 
         //Z
-        if (playerHealth == null) return;
+        if (playerHealthBar == null) return;
 
-        float distance = Vector3.Distance(transform.position, playerHealth.transform.position);
+        float distance = Vector3.Distance(transform.position, playerHealthBar.transform.position);
 
         // Set readyToAttack based on player distance
         readyToAttack = distance <= attackRange;
@@ -195,9 +195,9 @@ public class EnemyUnit : MonoBehaviour
         animator.SetTrigger("AttackSword");
 
         //Z
-        if (playerHealth != null)
+        if (playerHealthBar != null)
         {
-            playerHealth.TakeDamage(attackDamage);
+            playerHealthBar.TakeDamage(attackDamage);
         }
         //Z
 
