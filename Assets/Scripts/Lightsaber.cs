@@ -33,11 +33,11 @@ public class Lightsaber : MonoBehaviour
     {
         if (!isEnemyLightsaber)
         {
-            //Vector3 screenMousePos = Mouse.current.position.ReadValue();
-            //screenMousePos += Vector3.forward * distance;
-            //Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
+            Vector3 screenMousePos = Mouse.current.position.ReadValue();
+            screenMousePos += Vector3.forward * distance;
+            Vector3 worldMousePos = cam.ScreenToWorldPoint(screenMousePos);
 
-            //transform.position = worldMousePos;
+            transform.position = worldMousePos;
 
             //transform.position = cam.transform.position + new Vector3(0, -1f, 2.5f);
             /*if (Input.touchCount > 0)
