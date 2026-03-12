@@ -112,7 +112,9 @@ public class Lightsaber : MonoBehaviour
             EnemyUnit enemy = other.gameObject.GetComponent<EnemyUnit>();
             enemy.TakeDamage(50);
         }
+
         if(other.gameObject.CompareTag("Lightsaber") && isEnemyLightsaber){
+            Debug.Log("saber hit saber");
             this.GetComponent<EnemyUnit>().KnockedBack();
         }
 
