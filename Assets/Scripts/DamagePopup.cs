@@ -13,13 +13,23 @@ public class DamagePopup : MonoBehaviour
     void Awake()
     {
         textMesh = GetComponent<TextMeshPro>();
+
+        if (textMesh == null)
+        {
+            Debug.LogError("No TextMeshPro found on DamagePopup!");
+            return;
+        }
+
         textColor = textMesh.color;
         timer = duration;
     }
 
     public void Setup(int damage)
     {
-        textMesh.text = "-" + damage;
+        if (textMesh != null)
+        {
+            textMesh.text = "-" + damage;
+        }
     }
 
     void Update()
@@ -28,8 +38,13 @@ public class DamagePopup : MonoBehaviour
 
         timer -= Time.deltaTime;
 
-        textColor.a = Mathf.Clamp01(timer / duration);
-        textMesh.color = textColor;
+        Debug.Log("DamagePopup updating");
+
+        if (textMesh != null)
+        {
+            textColor.a = Mathf.Clamp01(timer / duration);
+            textMesh.color = textColor;
+        }
 
         if (Camera.main != null)
         {
