@@ -10,6 +10,7 @@ public class EnemyUnit : MonoBehaviour
     public TMP_Text scoreText;
 
     public TheForce theForceScript;
+    public ArduinoForceListener arduinoForceListener;
 
     private NavMeshAgent agent;
 
@@ -46,7 +47,7 @@ public class EnemyUnit : MonoBehaviour
         StartCoroutine(WaitForNavmesh());
         //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
         agent = GetComponent<NavMeshAgent>();
-
+        arduinoForceListener = FindAnyObjectByType<ArduinoForceListener>();
     }
 
     IEnumerator WaitForNavmesh()
@@ -126,6 +127,7 @@ public class EnemyUnit : MonoBehaviour
             lastHitTime = Time.time;
 
             TakeDamage(50);
+            arduinoForceListener.SendVibration();
         }
 
         if (other.CompareTag("AttackTrigger"))
