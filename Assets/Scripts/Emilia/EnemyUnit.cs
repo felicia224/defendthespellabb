@@ -211,10 +211,9 @@ public class EnemyUnit : MonoBehaviour
         }
     }
 
-    public void KnockedBack()
+    private void GetKnocked()
     {
         Debug.Log("Knocked back");
-        animator.SetTrigger("KnockBack");
     }
 
 }
