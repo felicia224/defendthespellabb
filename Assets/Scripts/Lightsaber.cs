@@ -105,16 +105,21 @@ public class Lightsaber : MonoBehaviour
 
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (isEnemyLightsaber)
+
+        if(other.gameObject.CompareTag("Lightsaber") && isEnemyLightsaber){
+            this.GetComponent<EnemyUnit>().KnockedBack();
+        }
+
+        /*if (isEnemyLightsaber)
         {
             Debug.Log("Triggered");
             if (other.gameObject.CompareTag("MainCamera"))
             {
                 Debug.Log("Triggered camera!");
             }
-        }
+        }*/
         
-    }*/
+    }
 }
