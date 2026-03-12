@@ -10,7 +10,6 @@ public class EnemyUnit : MonoBehaviour
     public TMP_Text scoreText;
 
     public TheForce theForceScript;
-    public ArduinoForceListener arduinoForceListener;
 
     private NavMeshAgent agent;
 
@@ -35,6 +34,12 @@ public class EnemyUnit : MonoBehaviour
     [SerializeField] private const float interval = 3.0f;
     private bool readyToAttack;
 
+    //Zoey la till:
+    public PlayerHealth playerHealth;
+    public float attackRange = 2.0f;
+    public int attackDamage = 1; // Use 1 damage to match player health system
+
+    //SLut på d z la till
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -47,7 +52,13 @@ public class EnemyUnit : MonoBehaviour
         StartCoroutine(WaitForNavmesh());
         //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
         agent = GetComponent<NavMeshAgent>();
-        arduinoForceListener = FindAnyObjectByType<ArduinoForceListener>();
+
+        //Z
+        if (playerHealth == null)
+        {
+            playerHealth = FindObjectOfType<PlayerHealth>();
+        }
+        //Z
     }
 
     IEnumerator WaitForNavmesh()
@@ -126,8 +137,8 @@ public class EnemyUnit : MonoBehaviour
             if (Time.time - lastHitTime < hitCooldown) return;
             lastHitTime = Time.time;
 
+            animator.SetTrigger("Hit"); // NYYYYYYYYYY
             TakeDamage(50);
-            arduinoForceListener.SendVibration();
         }
 
         if (other.CompareTag("AttackTrigger"))
@@ -153,6 +164,24 @@ public class EnemyUnit : MonoBehaviour
             // Sätt Speed i Animator
             animator.SetFloat("Speed", speed);
         }
+
+        //Z
+        if (playerHealth == null) return;
+
+        float distance = Vector3.Distance(transform.position, playerHealth.transform.position);
+
+        // Set readyToAttack based on player distance
+        readyToAttack = distance <= attackRange;
+
+        if (readyToAttack)
+        {
+            WaitForAttack();
+        }
+        else
+        {
+            timeBeforeAttack = 0f; // Reset attack timer if player is out of range
+        }
+        //Z end
     }
 
     private void AttackPlayer()
@@ -160,6 +189,14 @@ public class EnemyUnit : MonoBehaviour
         Debug.Log("Attacking");
         //här ska attackanimation läggas in nu
         animator.SetTrigger("AttackSword");
+
+        //Z
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(attackDamage);
+        }
+        //Z
+
     }
 
     private void WaitForAttack()

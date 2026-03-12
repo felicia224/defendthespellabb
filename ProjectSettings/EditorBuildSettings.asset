@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: aabdd1e5c665ac147b4625d044eb7a04
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Startmeny.unity
     guid: 245ec0332f67b3d4988e2a8d214f610e
   - enabled: 1
     path: "Assets/Scenes/K\xF6OchSpawn.unity"
     guid: 0e4a696936d149f4dabf372fe13055f6
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Scenes/SlutmenyF\xD6RLUST.unity"
     guid: 02cf45714bcdae64f875b1c6d48b29c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SlutmenyVINST.unity
     guid: 292e6a51c08fec6498543333f04be24e
   m_configObjects:
@@ -25,4 +25,5 @@ EditorBuildSettings:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 02f35591de6b47844ab2d0ead9e6317f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f49f865343c8b4d498b0805ab6b07454, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c155f3eba2c38f14b81ff2f75460e479, type: 2}
   m_UseUCBPForAssetBundles: 0
