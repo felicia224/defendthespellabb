@@ -107,7 +107,11 @@ public class Lightsaber : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.CompareTag("Enemy") && !isEnemyLightsaber)
+        {
+            EnemyUnit enemy = other.gameObject.GetComponent<EnemyUnit>();
+            enemy.TakeDamage(50);
+        }
         if(other.gameObject.CompareTag("Lightsaber") && isEnemyLightsaber){
             this.GetComponent<EnemyUnit>().KnockedBack();
         }

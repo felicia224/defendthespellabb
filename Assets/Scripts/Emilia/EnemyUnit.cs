@@ -90,6 +90,7 @@ public class EnemyUnit : MonoBehaviour
     {
         currentHealth -= damage;
         ShowDamage(damage);
+        animator.SetTrigger("Hit");
 
         if (currentHealth <= 0)
         {
@@ -97,7 +98,7 @@ public class EnemyUnit : MonoBehaviour
         }
     }
 
-    void ShowDamage(int damage)
+    private void ShowDamage(int damage)
     {
         if (damagePopupPrefab == null) return;
 
@@ -119,7 +120,7 @@ public class EnemyUnit : MonoBehaviour
     }
 
 
-    void Die()
+    private void Die()
     {
 
         // Summera score
@@ -132,14 +133,14 @@ public class EnemyUnit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Lightsaber")){
+        /*if (other.CompareTag("Lightsaber")){
 
             if (Time.time - lastHitTime < hitCooldown) return;
             lastHitTime = Time.time;
 
-            animator.SetTrigger("Hit"); // NYYYYYYYYYY
+             // NYYYYYYYYYY
             TakeDamage(50);
-        }
+        }*/
 
         if (other.CompareTag("AttackTrigger"))
         {
