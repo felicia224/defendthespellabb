@@ -61,12 +61,12 @@ public class ScoreManager : MonoBehaviour
     void UpdateScoreUI()
     {
         if (scoreText != null)
-            scoreText.text = "Score: " + score;
+            scoreText.text = "" + score;
     }
 
     void UpdateHighScoreUI()
     {
         if (highScoreText != null)
-            highScoreText.text = "Highscore: " + highScore;
+            highScoreText.text = "" + highScore;
     }
 }

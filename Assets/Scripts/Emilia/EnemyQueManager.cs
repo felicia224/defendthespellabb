@@ -199,23 +199,23 @@ public class EnemyQueueManager : MonoBehaviour
     }
 
     public void OnEnemyDied(EnemyUnit unit)
-{
-    int index = slots.IndexOf(unit);
-    if (index < 0) return;
-
-    slots[index] = null;
-
-    Destroy(unit.gameObject);
-
-    if (index == 0)
     {
-        ShiftForward();
+        int index = slots.IndexOf(unit);
+        if (index < 0) return;
+
+        slots[index] = null;
+
+        Destroy(unit.gameObject);
+
+        if (index == 0)
+        {
+            ShiftForward();
+        }
+        else
+        {
+            UpdateAllPositions();
+        }
     }
-    else
-    {
-        UpdateAllPositions();
-    }
-}
 
 
     void ShiftForward()

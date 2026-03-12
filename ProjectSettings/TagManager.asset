@@ -7,11 +7,12 @@ TagManager:
   - Enemy
   - Lightsaber
   - EnemyLightsaber
+  - AttackTrigger
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Overlay UI
   - Water
   - UI
   - 

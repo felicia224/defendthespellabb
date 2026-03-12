@@ -16,7 +16,7 @@ public class EnemyUnit : MonoBehaviour
     private bool ready = false;
     private Transform pendingTarget;
 
-    private EnemyQueueManager enemyQM;
+    //private EnemyQueueManager enemyQM;
 
     [SerializeField] private Lightsaber enemyLightsaber;
 
@@ -28,14 +28,15 @@ public class EnemyUnit : MonoBehaviour
     public float hitCooldown = 0.2f;
 
     public GameObject damagePopupPrefab;
+    [SerializeField] private Animator animator;
+
+    private float timeBeforeAttack;
+    [SerializeField] private const float interval = 3.0f;
+    private bool readyToAttack;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    void OnEnable()
-    {
         currentHealth = maxHealth;
     }
 
@@ -43,7 +44,9 @@ public class EnemyUnit : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitForNavmesh());
-        enemyQM = FindAnyObjectByType<EnemyQueueManager>();
+        //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
+        agent = GetComponent<NavMeshAgent>();
+
     }
 
     IEnumerator WaitForNavmesh()
@@ -64,6 +67,7 @@ public class EnemyUnit : MonoBehaviour
         if (!ready || !agent.isOnNavMesh)
         {
             pendingTarget = target;
+            
             return;
         }
 
@@ -82,25 +86,25 @@ public class EnemyUnit : MonoBehaviour
     }
 
     void ShowDamage(int damage)
-{
-    if (damagePopupPrefab == null) return;
+    {
+        if (damagePopupPrefab == null) return;
 
-    Vector3 randomOffset = new Vector3(
-        Random.Range(-0.25f, 0.25f),
-        Random.Range(0f, 0.25f),
-        Random.Range(-0.25f, 0.25f)
-    );
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-0.25f, 0.25f),
+            Random.Range(0f, 0.25f),
+            Random.Range(-0.25f, 0.25f)
+        );
 
-    Debug.Log("ShowDamage spawn!");
+        Debug.Log("ShowDamage spawn!");
 
-    Vector3 spawnPos = transform.position + Vector3.up * 2.5f + randomOffset;
+        Vector3 spawnPos = transform.position + Vector3.up * 0.5f + randomOffset;
 
-    GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
+        GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
 
-    DamagePopup dp = popup.GetComponent<DamagePopup>();
-    if (dp != null)
-        dp.Setup(damage);
-}
+        DamagePopup dp = popup.GetComponent<DamagePopup>();
+        if (dp != null)
+            dp.Setup(damage);
+    }
 
 
     void Die()
@@ -116,16 +120,62 @@ public class EnemyUnit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Lightsaber")) return;
+        if (other.CompareTag("Lightsaber")){
 
-        if (Time.time - lastHitTime < hitCooldown) return;
-        lastHitTime = Time.time;
+            if (Time.time - lastHitTime < hitCooldown) return;
+            lastHitTime = Time.time;
 
-        TakeDamage(50);
+            animator.SetTrigger("Hit"); // NYYYYYYYYYY
+            TakeDamage(50);
+        }
+
+        if (other.CompareTag("AttackTrigger"))
+        {
+            readyToAttack = true;
+            Debug.Log("Stormtroop entering attacktrigger");
+        }
+    }
+
+    void Update()
+    {
+        if (readyToAttack)
+        {
+            WaitForAttack();
+        }
+        
+
+        if (agent != null && animator != null)
+        {
+            // NavMeshAgent.velocity.magnitude är hastigheten
+            float speed = agent.velocity.magnitude;
+
+            // Sätt Speed i Animator
+            animator.SetFloat("Speed", speed);
+        }
     }
 
     private void AttackPlayer()
     {
-        
+        Debug.Log("Attacking");
+        //här ska attackanimation läggas in nu
+        animator.SetTrigger("AttackSword");
     }
+
+    private void WaitForAttack()
+    {
+        timeBeforeAttack += Time.deltaTime;
+
+        if (timeBeforeAttack >= interval)
+        {
+            timeBeforeAttack -= interval;
+
+            AttackPlayer();
+        }
+    }
+
+    private void GetKnocked()
+    {
+        Debug.Log("Knocked back");
+    }
+
 }
