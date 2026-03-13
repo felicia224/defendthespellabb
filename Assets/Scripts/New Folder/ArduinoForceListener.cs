@@ -65,4 +65,22 @@ public class ArduinoForceListener : MonoBehaviour
             Debug.Log("Skickade Vibrate till Arduino");
         }
     }
+
+    public void TurnOnLamp()
+    {
+        if (client != null && client.IsConnected)
+        {
+            client.Publish("Unity/Vibration", Encoding.UTF8.GetBytes("Lamp"), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, false);
+            Debug.Log("Skickade Lamp till Arduino");
+        }
+    }
+
+    public void TurnOffLamp()
+    {
+        if (client != null && client.IsConnected)
+        {
+            client.Publish("Unity/Vibration", Encoding.UTF8.GetBytes("LampOff"), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, false);
+            Debug.Log("Skickade Lamp till Arduino");
+        }
+    }
 }
