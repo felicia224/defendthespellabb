@@ -105,35 +105,27 @@ public class Lightsaber : MonoBehaviour
 
     }
 
-    //Z
     private void OnTriggerEnter(Collider other)
     {
-        if (!isEnemyLightsaber) return;
-
-        if (other.CompareTag("MainCamera"))
+        if (other.gameObject.CompareTag("Enemy") && !isEnemyLightsaber)
         {
-            Debug.Log("Player hit!");
-
-            Player player = other.GetComponent<Player>();
-
-            if (player != null)
-            {
-                player.TakeDamage();
-            }
+            EnemyUnit enemy = other.gameObject.GetComponent<EnemyUnit>();
+            enemy.TakeDamage(50);
         }
-    }
-    //z
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (isEnemyLightsaber)
+        if(other.gameObject.CompareTag("Lightsaber") && isEnemyLightsaber){
+            Debug.Log("saber hit saber");
+            this.GetComponent<EnemyUnit>().KnockedBack();
+        }
+
+        /*if (isEnemyLightsaber)
         {
             Debug.Log("Triggered");
             if (other.gameObject.CompareTag("MainCamera"))
             {
                 Debug.Log("Triggered camera!");
             }
-        }
+        }*/
         
-    }*/
+    }
 }
