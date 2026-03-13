@@ -67,7 +67,7 @@ public class Lightsaber : MonoBehaviour
         }
     }
 
-    private void StartScaling()
+    public void StartScaling()
     {
 
         audioSource.Play();

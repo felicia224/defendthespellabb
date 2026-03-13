@@ -16,12 +16,15 @@ public class TheForce : MonoBehaviour
     public Transform attackPoint;
 
     public ForceLightningVFX lightningPrefab;
-    public Transform lightningOrigin; 
+    public Transform lightningOrigin;
+    public ArduinoForceListener arduinoForceListener;
 
     public void HandleButtonPress()
     {
         if (hasPressedButton) return;
         hasPressedButton = true;
+
+        arduinoForceListener.TurnOffLamp();
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, SphereRadius);
         if (hitColliders.Length == 0) return;
@@ -99,6 +102,7 @@ public class TheForce : MonoBehaviour
             {
                 hasPressedButton = false;
                 shrinkTime = 1.0f;
+                arduinoForceListener.TurnOnLamp();
             }
         }
     }
@@ -107,5 +111,8 @@ public class TheForce : MonoBehaviour
     {
         hasPressedButton = false;
         shrinkTime = 1.0f;
+
+        arduinoForceListener = FindAnyObjectByType<ArduinoForceListener>();
+        arduinoForceListener.TurnOnLamp();
     }
 }
