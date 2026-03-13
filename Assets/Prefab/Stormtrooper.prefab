@@ -2025,10 +2025,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.0000000031837069
       objectReference: {fileID: 0}
-    - target: {fileID: 2656564292558708399, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3107630828881354071, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00013
@@ -2073,6 +2069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyLightsaber
       objectReference: {fileID: 0}
+    - target: {fileID: 4427186948469403874, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
+      propertyPath: enemyHolder
+      value: 
+      objectReference: {fileID: 7959457808163801701}
     - target: {fileID: 6131349223698492661, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0005

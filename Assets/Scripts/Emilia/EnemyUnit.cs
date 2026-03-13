@@ -91,7 +91,7 @@ public class EnemyUnit : MonoBehaviour
         currentHealth -= damage;
         ShowDamage(damage);
         animator.SetTrigger("Hit");
-
+        Debug.Log("Trooper health is: " +  currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -122,7 +122,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Die()
     {
-
+        Debug.Log("dör");
         // Summera score
         if (ScoreManager.instance != null)
             ScoreManager.instance.AddScore(30);
