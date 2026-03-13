@@ -34,12 +34,7 @@ public class EnemyUnit : MonoBehaviour
     [SerializeField] private const float interval = 3.0f;
     private bool readyToAttack;
 
-    //Zoey la till:
-    public HealthHeartBar playerHealthBar;
-    public float attackRange = 2.0f;
-    public int attackDamage = 1; // Use 1 damage to match player health system
 
-    //SLut på d z la till
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -53,16 +48,7 @@ public class EnemyUnit : MonoBehaviour
         //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
         agent = GetComponent<NavMeshAgent>();
 
-        //Z
-       
-        {
-            if (playerHealthBar == null)
-                playerHealthBar = FindAnyObjectByType<HealthHeartBar>();
 
-            Debug.Log("playerHealthBar  assigned: " + (playerHealthBar != null));
-        }
-
-        //Z
     }
 
     IEnumerator WaitForNavmesh()
@@ -169,23 +155,7 @@ public class EnemyUnit : MonoBehaviour
             animator.SetFloat("Speed", speed);
         }
 
-        //Z
-        if (playerHealthBar == null) return;
-
-        float distance = Vector3.Distance(transform.position, playerHealthBar.transform.position);
-
-        // Set readyToAttack based on player distance
-        readyToAttack = distance <= attackRange;
-
-        if (readyToAttack)
-        {
-            WaitForAttack();
-        }
-        else
-        {
-            timeBeforeAttack = 0f; // Reset attack timer if player is out of range
-        }
-        //Z end
+       
     }
 
     private void AttackPlayer()
@@ -193,13 +163,6 @@ public class EnemyUnit : MonoBehaviour
         Debug.Log("Attacking");
         //här ska attackanimation läggas in nu
         animator.SetTrigger("AttackSword");
-
-        //Z
-        if (playerHealthBar != null)
-        {
-            playerHealthBar.TakeDamage(attackDamage);
-        }
-        //Z
 
     }
 
@@ -214,6 +177,8 @@ public class EnemyUnit : MonoBehaviour
             AttackPlayer();
         }
     }
+
+
 
     private void GetKnocked()
     {

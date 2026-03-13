@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public Sprite fullHeart;
     public Image[] hearts;
 
- 
-    //Slut på det z la till
 
     void Start()
     {
