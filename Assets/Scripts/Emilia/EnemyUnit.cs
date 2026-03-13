@@ -51,12 +51,6 @@ public class EnemyUnit : MonoBehaviour
         //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
         agent = GetComponent<NavMeshAgent>();
 
-        //Z
-        if (playerHealth == null)
-        {
-            playerHealth = FindObjectOfType<PlayerHealth>();
-        }
-        //Z
         arduinoForceListener = FindAnyObjectByType<ArduinoForceListener>();
     }
 
