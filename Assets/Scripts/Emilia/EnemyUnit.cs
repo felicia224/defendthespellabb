@@ -10,6 +10,7 @@ public class EnemyUnit : MonoBehaviour
     public TMP_Text scoreText;
 
     public TheForce theForceScript;
+    public ArduinoForceListener arduinoForceListener;
 
     private NavMeshAgent agent;
 
@@ -34,12 +35,9 @@ public class EnemyUnit : MonoBehaviour
     [SerializeField] private const float interval = 3.0f;
     private bool readyToAttack;
 
-    //Zoey la till:
-    public PlayerHealth playerHealth;
-    public float attackRange = 2.0f;
-    public int attackDamage = 1; // Use 1 damage to match player health system
 
-    //SLut på d z la till
+    //SLut pï¿½ d z la till
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -53,12 +51,7 @@ public class EnemyUnit : MonoBehaviour
         //enemyQM = FindAnyObjectByType<EnemyQueueManager>();
         agent = GetComponent<NavMeshAgent>();
 
-        //Z
-        if (playerHealth == null)
-        {
-            playerHealth = FindObjectOfType<PlayerHealth>();
-        }
-        //Z
+        arduinoForceListener = FindAnyObjectByType<ArduinoForceListener>();
     }
 
     IEnumerator WaitForNavmesh()
@@ -91,7 +84,7 @@ public class EnemyUnit : MonoBehaviour
         currentHealth -= damage;
         ShowDamage(damage);
         animator.SetTrigger("Hit");
-
+        Debug.Log("Trooper health is: " +  currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -122,7 +115,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Die()
     {
-
+        Debug.Log("dï¿½r");
         // Summera score
         if (ScoreManager.instance != null)
             ScoreManager.instance.AddScore(30);
@@ -141,7 +134,9 @@ public class EnemyUnit : MonoBehaviour
              // NYYYYYYYYYY
             TakeDamage(50);
         }*/
-
+        arduinoForceListener.SendVibration();
+            
+        
         if (other.CompareTag("AttackTrigger"))
         {
             readyToAttack = true;
@@ -159,44 +154,21 @@ public class EnemyUnit : MonoBehaviour
 
         if (agent != null && animator != null)
         {
-            // NavMeshAgent.velocity.magnitude är hastigheten
+            // NavMeshAgent.velocity.magnitude ï¿½r hastigheten
             float speed = agent.velocity.magnitude;
 
-            // Sätt Speed i Animator
+            // Sï¿½tt Speed i Animator
             animator.SetFloat("Speed", speed);
         }
 
-        //Z
-        if (playerHealth == null) return;
-
-        float distance = Vector3.Distance(transform.position, playerHealth.transform.position);
-
-        // Set readyToAttack based on player distance
-        readyToAttack = distance <= attackRange;
-
-        if (readyToAttack)
-        {
-            WaitForAttack();
-        }
-        else
-        {
-            timeBeforeAttack = 0f; // Reset attack timer if player is out of range
-        }
-        //Z end
+       
     }
 
     private void AttackPlayer()
     {
         Debug.Log("Attacking");
-        //här ska attackanimation läggas in nu
+        //hï¿½r ska attackanimation lï¿½ggas in nu
         animator.SetTrigger("AttackSword");
-
-        //Z
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(attackDamage);
-        }
-        //Z
 
     }
 
