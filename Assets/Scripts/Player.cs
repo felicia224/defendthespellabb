@@ -30,21 +30,17 @@ public class Player : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("EnemyLightsaber"))
         {
             TakeDamage();
         }
-    }
+    }*/
 
     public void TakeDamage()
     {
         health--; Debug.Log(health);
-        if(health <= 0)
-        {
-            KillPlayer();
-        }
         //Z
         UpdateHearts();
         if(health<= 0)

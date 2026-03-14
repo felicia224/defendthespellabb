@@ -25,6 +25,7 @@ public class LightsaberLine : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("istriggering");
+
         if (other.gameObject.CompareTag("Enemy") && !isEnemyLightsaber)
         {
             EnemyUnit enemy = other.gameObject.GetComponent<EnemyUnit>();
