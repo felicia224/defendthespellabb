@@ -103,21 +103,4 @@ public class Lightsaber : MonoBehaviour
 
     }
 
-   
-    private void OnTriggerEnter(Collider other)
-    {
-        //Z
-        if (other.CompareTag("MainCamera"))
-        {
-            Debug.Log("Player hit!");
-
-            Player player = other.GetComponent<Player>();
-
-            if (player != null)
-            {
-                player.TakeDamage();
-            }
-        }
-        //z
-    }
 }

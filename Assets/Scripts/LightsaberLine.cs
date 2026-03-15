@@ -38,5 +38,19 @@ public class LightsaberLine : MonoBehaviour
             enemyHolder.KnockedBack();
             
         }
+
+        //Z
+        if (other.CompareTag("MainCamera"))
+        {
+            Debug.Log("Player hit!");
+
+            Player player = other.GetComponent<Player>();
+
+            if (player != null)
+            {
+                player.TakeDamage();
+            }
+        }
+        //z
     }
 }
