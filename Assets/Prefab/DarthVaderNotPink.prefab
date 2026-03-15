@@ -1093,10 +1093,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  scoreText: {fileID: 0}
+  theForceScript: {fileID: 0}
+  arduinoForceListener: {fileID: 0}
+  enemyLightsaber: {fileID: 0}
   maxHealth: 200
   currentHealth: 0
   hitCooldown: 0.2
-  damagePopupPrefab: {fileID: 0}
+  damagePopupPrefab: {fileID: 1783729238376541925, guid: 666930d5880d64117919f9d08218991e, type: 3}
+  animator: {fileID: 8040342962543995997}
+  playerHealthBar: {fileID: 0}
+  attackRange: 2
+  attackDamage: 1
 --- !u!95 &8040342962543995997
 Animator:
   serializedVersion: 7
