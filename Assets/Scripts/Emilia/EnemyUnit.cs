@@ -99,6 +99,7 @@ public class EnemyUnit : MonoBehaviour
         currentHealth -= damage;
         ShowDamage(damage);
         animator.SetTrigger("Hit");
+        arduinoForceListener.SendVibration();
         Debug.Log("Trooper health is: " +  currentHealth);
         if (currentHealth <= 0)
         {
@@ -149,7 +150,7 @@ public class EnemyUnit : MonoBehaviour
              // NYYYYYYYYYY
             TakeDamage(50);
         }*/
-        arduinoForceListener.SendVibration();
+        //arduinoForceListener.SendVibration();
             
         
         if (other.CompareTag("AttackTrigger"))
