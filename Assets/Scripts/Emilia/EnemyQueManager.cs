@@ -139,12 +139,13 @@ public class EnemyQueueManager : MonoBehaviour
                 if (currentWaveIndex >= waves.Length)
                 {
                     // Sista wave klar → Victory
-                    if (!gameFinished)
+                    /*if (!gameFinished)
                     {
                         gameFinished = true;
                         StartCoroutine(LoadVictoryScene());
                     }
-                    yield break;
+                    yield break;*/
+                    currentWaveIndex = 0;
                 }
                 else
                 {
