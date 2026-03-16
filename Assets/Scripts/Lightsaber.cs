@@ -67,7 +67,7 @@ public class Lightsaber : MonoBehaviour
         }
     }
 
-    private void StartScaling()
+    public void StartScaling()
     {
 
         audioSource.Play();
@@ -100,21 +100,7 @@ public class Lightsaber : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
-
 
     }
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (isEnemyLightsaber)
-        {
-            Debug.Log("Triggered");
-            if (other.gameObject.CompareTag("MainCamera"))
-            {
-                Debug.Log("Triggered camera!");
-            }
-        }
-        
-    }*/
 }
