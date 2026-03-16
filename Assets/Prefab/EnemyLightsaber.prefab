@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3107630828881354071}
   - component: {fileID: 5716133829921595028}
-  - component: {fileID: -4476149155104091025}
   m_Layer: 0
   m_Name: EnemyLightsaber
   m_TagString: EnemyLightsaber
@@ -51,29 +50,6 @@ MonoBehaviour:
   saber: {fileID: 7997515221977331308}
   duration: 0.2
   audioSource: {fileID: 0}
---- !u!136 &-4476149155104091025
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4250881716948168159}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.0002
-  m_Height: 0.0072751143
-  m_Direction: 1
-  m_Center: {x: 0.00034999897, y: 0.004590169, z: -0.00025}
 --- !u!1 &6330474048064779643
 GameObject:
   m_ObjectHideFlags: 0

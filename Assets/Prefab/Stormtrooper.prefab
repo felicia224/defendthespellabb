@@ -158,6 +158,9 @@ MonoBehaviour:
   hitCooldown: 0.2
   damagePopupPrefab: {fileID: 1783729238376541925, guid: 666930d5880d64117919f9d08218991e, type: 3}
   animator: {fileID: 6455514273501850252}
+  playerHealthBar: {fileID: 0}
+  attackRange: 2
+  attackDamage: 1
 --- !u!54 &6351399999482955538
 Rigidbody:
   m_ObjectHideFlags: 0
