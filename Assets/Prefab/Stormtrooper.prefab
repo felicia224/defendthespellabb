@@ -151,12 +151,16 @@ MonoBehaviour:
   manager: {fileID: 0}
   scoreText: {fileID: 0}
   theForceScript: {fileID: 0}
+  arduinoForceListener: {fileID: 0}
   enemyLightsaber: {fileID: 427716466330250695}
   maxHealth: 100
   currentHealth: 0
   hitCooldown: 0.2
   damagePopupPrefab: {fileID: 1783729238376541925, guid: 666930d5880d64117919f9d08218991e, type: 3}
   animator: {fileID: 6455514273501850252}
+  playerHealthBar: {fileID: 0}
+  attackRange: 2
+  attackDamage: 1
 --- !u!54 &6351399999482955538
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2066,6 +2070,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyLightsaber
       objectReference: {fileID: 0}
+    - target: {fileID: 4427186948469403874, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
+      propertyPath: enemyHolder
+      value: 
+      objectReference: {fileID: 7959457808163801701}
     - target: {fileID: 6131349223698492661, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0005
