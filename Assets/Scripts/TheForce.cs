@@ -21,6 +21,7 @@ public class TheForce : MonoBehaviour
 
     public void HandleButtonPress()
     {
+        Debug.Log("activates HANDLEBUTTONPRESS");
         if (hasPressedButton) return;
         hasPressedButton = true;
 

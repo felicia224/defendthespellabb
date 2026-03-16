@@ -30,7 +30,7 @@ public class ArduinoForceListener : MonoBehaviour
     private void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
     {
         lastMessage = Encoding.UTF8.GetString(e.Message);
-        Debug.Log("Arduino skickade: " + lastMessage);
+       // Debug.Log("Arduino skickade: " + lastMessage);
     }
 
     void Update()
