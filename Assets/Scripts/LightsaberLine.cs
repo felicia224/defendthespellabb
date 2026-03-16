@@ -6,6 +6,9 @@ public class LightsaberLine : MonoBehaviour
     [SerializeField] private bool isEnemyLightsaber = false;
     [SerializeField] private EnemyUnit enemyHolder = null;
 
+    private bool playerCanTakeDamage;
+    private float timeBeforeEnemyAttack;
+    [SerializeField] private const float interval = 3.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -19,7 +22,21 @@ public class LightsaberLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!playerCanTakeDamage)
+        {
+            WaitForEnemyAttack();
+        }
+    }
+    private void WaitForEnemyAttack()
+    {
+        timeBeforeEnemyAttack += Time.deltaTime;
+
+        if (timeBeforeEnemyAttack >= interval)
+        {
+            timeBeforeEnemyAttack -= interval;
+
+            playerCanTakeDamage = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,6 +58,8 @@ public class LightsaberLine : MonoBehaviour
         if (other.CompareTag("MainCamera") && isEnemyLightsaber)
         {
             Debug.Log("Player hit!");
+
+            playerCanTakeDamage = false;
 
             Player player = other.GetComponent<Player>();
 
