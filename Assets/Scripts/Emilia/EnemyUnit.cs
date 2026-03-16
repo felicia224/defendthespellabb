@@ -38,7 +38,7 @@ public class EnemyUnit : MonoBehaviour
     //Zoey la till:
     public HealthHeartBar playerHealthBar;
     public float attackRange = 2.0f;
-    public int attackDamage = 1; // Use 1 damage to match player health system
+    public int attackDamage = 1;    // Use 1 damage to match player health system
 
     //SLut p� d z la till
 
