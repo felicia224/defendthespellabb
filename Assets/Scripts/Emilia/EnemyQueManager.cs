@@ -146,6 +146,7 @@ public class EnemyQueueManager : MonoBehaviour
                     }
                     yield break;*/
                     currentWaveIndex = 0;
+                    StartNextWave();
                 }
                 else
                 {
