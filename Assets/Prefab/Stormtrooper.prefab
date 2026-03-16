@@ -2006,26 +2006,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6879718036188062193}
     m_Modifications:
-    - target: {fileID: 2656564292558708399, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_Height
-      value: 0.007624678
-      objectReference: {fileID: 0}
-    - target: {fileID: 2656564292558708399, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_Radius
-      value: 0.00025
-      objectReference: {fileID: 0}
-    - target: {fileID: 2656564292558708399, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_Center.x
-      value: 0.0000000013533142
-      objectReference: {fileID: 0}
-    - target: {fileID: 2656564292558708399, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_Center.y
-      value: 0.0043315967
-      objectReference: {fileID: 0}
-    - target: {fileID: 2656564292558708399, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_Center.z
-      value: 0.0000000031837069
-      objectReference: {fileID: 0}
     - target: {fileID: 3107630828881354071, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00013
@@ -2074,42 +2054,6 @@ PrefabInstance:
       propertyPath: enemyHolder
       value: 
       objectReference: {fileID: 7959457808163801701}
-    - target: {fileID: 6131349223698492661, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.0005
-      objectReference: {fileID: 0}
-    - target: {fileID: 6131349223698492661, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.00135
-      objectReference: {fileID: 0}
-    - target: {fileID: 6131349223698492661, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.0005
-      objectReference: {fileID: 0}
-    - target: {fileID: 6131349223698492661, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997515221966140018, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_endPos.y
-      value: 0.008
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997515221966140018, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_lineWidth
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997515221966140018, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_startPos.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997515221966140018, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_lightSaberFactor
-      value: 0.927
-      objectReference: {fileID: 0}
-    - target: {fileID: 7997515221977239084, guid: d7a9a32a24ff140499b7026f5861d560, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
