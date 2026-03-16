@@ -38,7 +38,7 @@ public class LightsaberLine : MonoBehaviour
         }
 
         //Z
-        if (other.CompareTag("MainCamera"))
+        if (other.CompareTag("MainCamera") && isEnemyLightsaber)
         {
             Debug.Log("Player hit!");
 
