@@ -12,6 +12,8 @@ public class TheForce : MonoBehaviour
     public float barSpeed;
     public float SphereRadius;
     public float heightForce;
+    private bool gameStarted;
+    [SerializeField] private EnemyQueueManager enemyQueueManager;
 
     public Transform attackPoint;
 
@@ -21,8 +23,15 @@ public class TheForce : MonoBehaviour
 
     public void HandleButtonPress()
     {
+        Debug.Log("activates HANDLEBUTTONPRESS");
         if (hasPressedButton) return;
         hasPressedButton = true;
+
+        if (!gameStarted)
+        {
+            gameStarted = true;
+            enemyQueueManager.StartBattle();
+        }
 
         arduinoForceListener.TurnOffLamp();
 

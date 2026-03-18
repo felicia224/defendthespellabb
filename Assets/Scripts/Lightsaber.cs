@@ -26,6 +26,8 @@ public class Lightsaber : MonoBehaviour
         {
             isEnemyLightsaber = true;
         }
+
+        //StartScaling();
     }
 
     // Update is called once per frame
